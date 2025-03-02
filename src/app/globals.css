@@ -37,3 +37,8 @@ body {
   background-color: #0157e4;
   color: #ffffff;
 }
+
+.rainbow-border {
+  animation: rotate 20s linear infinite;
+  background: linear-gradient(var(--angle),#02fcef70 0,#ffb52b70 50%,#a02bfe70 100%);
+}

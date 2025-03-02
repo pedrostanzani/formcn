@@ -10,15 +10,18 @@ import {
 } from "@/components/ui/dialog";
 import { SignInWithGitHub } from "@/components/auth/sign-in-with-github";
 import { Tagline } from "./tagline";
+import Link from "next/link";
 
 export function Header() {
   return (
     <header className="relative flex items-center justify-between px-4 py-5 md:px-6 md:py-7">
-      <div className="flex items-center gap-1.5">
-        <MousePointerClick className="h-6 w-6 fill-amber-500" />
-        <span className="text-xl leading-none font-bold tracking-tight select-none">
-          formcn
-        </span>
+      <div>
+        <Link className="flex items-center gap-1.5" href="/">
+          <MousePointerClick className="h-6 w-6 fill-amber-500" />
+          <span className="text-xl leading-none font-bold tracking-tight select-none">
+            formcn
+          </span>
+        </Link>
       </div>
       <Tagline />
       <div>

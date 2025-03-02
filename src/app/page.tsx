@@ -1,4 +1,3 @@
-import { Header } from "@/components/header";
 import { PromptBar } from "@/components/prompt-bar";
 
 export default function Home() {
