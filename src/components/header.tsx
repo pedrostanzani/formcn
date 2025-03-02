@@ -12,7 +12,7 @@ import { SignInWithGitHub } from "@/components/auth/sign-in";
 
 export function Header() {
   return (
-    <header className="relative flex items-center justify-between px-4 py-8 md:px-6">
+    <header className="relative flex items-center justify-between px-4 py-5 md:py-8 md:px-6">
       <div className="flex items-center gap-1.5">
         <MousePointerClick className="h-6 w-6 fill-amber-500" />
         <span className="text-xl leading-none font-bold tracking-tight select-none">
