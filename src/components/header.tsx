@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SignInWithGitHub } from "@/components/auth/sign-in";
+import { SignInWithGitHub } from "@/components/auth/sign-in-with-github";
 import { Tagline } from "./tagline";
 
 export function Header() {
