@@ -18,6 +18,7 @@ import {
   SlidersHorizontal,
   Calendar1,
   CalendarDays,
+  CircleOff,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
@@ -217,7 +218,12 @@ export function FormFieldSearchableList() {
         {fieldSections
           .filter(
             (fieldSection) =>
-              filters.includes(fieldSection.type) || filters.length === 0,
+              (filters.includes(fieldSection.type) || filters.length === 0) &&
+              fieldSection.fields.some(
+                (field) =>
+                  field.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  field.description.toLowerCase().includes(searchQuery.toLowerCase())
+              ),
           )
           .map((fieldSection) => (
             <div key={fieldSection.type}>
@@ -257,6 +263,22 @@ export function FormFieldSearchableList() {
               </div>
             </div>
           ))}
+        {fieldSections.filter(
+          (fieldSection) =>
+            (filters.includes(fieldSection.type) || filters.length === 0) &&
+            fieldSection.fields.some(
+              (field) =>
+                field.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                field.description.toLowerCase().includes(searchQuery.toLowerCase())
+            ),
+        ).length === 0 && (
+          <div className="flex flex-col justify-center items-center gap-5 h-full text-zinc-500">
+            <CircleOff className="size-10" />
+          <p className="text-center tracking-tight">
+            No matching fields found. Try a different search term.
+          </p>
+          </div>
+        )}
       </div>
     </div>
   );
