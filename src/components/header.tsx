@@ -9,19 +9,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { SignInWithGitHub } from "@/components/auth/sign-in";
+import { Tagline } from "./tagline";
 
 export function Header() {
   return (
-    <header className="relative flex items-center justify-between px-4 py-5 md:py-8 md:px-6">
+    <header className="relative flex items-center justify-between px-4 py-5 md:px-6 md:py-7">
       <div className="flex items-center gap-1.5">
         <MousePointerClick className="h-6 w-6 fill-amber-500" />
         <span className="text-xl leading-none font-bold tracking-tight select-none">
           formcn
         </span>
       </div>
-      <p className="absolute left-1/2 hidden -translate-x-1/2 transform text-center font-medium tracking-tight text-balance text-zinc-500 md:block">
-        Build beautiful forms with shadcn/ui, React Hook Form and Zod
-      </p>
+      <Tagline />
       <div>
         <Dialog>
           <DialogTrigger asChild>
