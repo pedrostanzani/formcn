@@ -213,7 +213,7 @@ export function FormFieldSearchableList() {
           </div>
         </div>
       </div>
-      <div className="flex-grow space-y-6">
+      <div className="flex-grow space-y-6 last:pb-6">
         {fieldSections
           .filter(
             (fieldSection) =>

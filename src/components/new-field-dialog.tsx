@@ -16,7 +16,7 @@ export function NewFieldDialog() {
       <DialogTrigger asChild>
         <Button className="cursor-pointer">Add new field</Button>
       </DialogTrigger>
-      <DialogContent className="flex max-h-[80vh] flex-col overflow-y-scroll px-0 sm:max-w-[768px]">
+      <DialogContent className="flex h-[80vh] flex-col overflow-y-scroll px-0 sm:max-w-[768px]">
         <DialogHeader className="gap-1.5 px-6">
           <DialogTitle className="text-2xl leading-none tracking-tight">
             Add new field
