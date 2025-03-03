@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextTopLoader color="#f59e0b" />
+        <NextTopLoader color="#f59e0b" showSpinner={false} />
         <div className="flex min-h-screen flex-col">
           <Header />
           {children}

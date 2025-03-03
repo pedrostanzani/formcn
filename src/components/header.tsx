@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="relative flex items-center justify-between px-4 py-5 md:px-6 md:py-7">
+    <header className="sticky top-0 z-50 bg-[#e4e4e4]/95 backdrop-blur supports-[backdrop-filter]:bg-[#e4e4e4]/60 border-b border-[#e5e5e5] flex items-center justify-between px-4 py-5 md:px-6 md:py-7">
       <div>
         <Link className="flex items-center gap-1.5" href="/">
           <MousePointerClick className="h-6 w-6 fill-amber-500" />
