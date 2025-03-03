@@ -42,13 +42,7 @@ export function EnumDemoField({
 }: {
   field: WithId<EnumField>;
   formControl: Control<FieldValues> | undefined;
-  form: UseFormReturn<
-    {
-      [x: string]: any;
-    },
-    any,
-    undefined
-  >;
+  form: UseFormReturn<FieldValues, any, undefined>;
 }) {
   if (fieldSpec.format === "select") {
     return (
@@ -60,7 +54,7 @@ export function EnumDemoField({
             {fieldSpec.label && <FormLabel>{fieldSpec.label}</FormLabel>}
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
-                <SelectTrigger>
+                <SelectTrigger className="w-[320px]">
                   <SelectValue placeholder={fieldSpec.placeholder} />
                 </SelectTrigger>
               </FormControl>
@@ -127,7 +121,7 @@ export function EnumDemoField({
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-[200px] justify-between",
+                    "w-[320px] justify-between",
                     !field.value && "text-muted-foreground",
                   )}
                 >
@@ -140,7 +134,7 @@ export function EnumDemoField({
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
+            <PopoverContent className="w-[320px] p-0">
               <Command>
                 <CommandInput placeholder="Search..." className="h-9" />
                 <CommandList>

@@ -26,7 +26,7 @@ export function StringFieldCard({ field }: { field: WithId<StringField> }) {
 
   return (
     <Fragment>
-      <FieldCardHeader fieldType={field.type} />
+      <FieldCardHeader fieldType={field.type} fieldFormat={field.format} />
       <div className="flex justify-between gap-1.5">
         <div className="w-full space-y-2">
           <Label className="font-medium" htmlFor={getFormFieldId("label")}>

@@ -27,20 +27,18 @@ import {
   DateFieldFormat,
 } from "@/core/types";
 
-export type FieldOption = {
-  title: string;
-  description: string;
-  type: string;
-  format: string;
-  icon: LucideIcon;
-  fieldToAdd: Field;
-};
-
 export const fieldSections: {
   type: FieldType;
   sectionName: string;
   accentBackground: string;
-  fields: FieldOption[];
+  fields: {
+    title: string;
+    description: string;
+    type: string;
+    format: string;
+    icon: LucideIcon;
+    fieldToAdd: Field;
+  }[];
   icon: LucideIcon;
 }[] = [
   {

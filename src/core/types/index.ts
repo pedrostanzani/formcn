@@ -26,6 +26,13 @@ export enum DateFieldFormat {
   Range = "range",
 }
 
+export type FieldFormat =
+  | StringFieldFormat
+  | EnumFieldFormat
+  | BooleanFieldFormat
+  | NumberFieldFormat
+  | DateFieldFormat;
+
 export enum FieldType {
   String = "string",
   Enum = "enum",

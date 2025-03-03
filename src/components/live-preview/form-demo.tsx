@@ -81,9 +81,14 @@ export const FormDemo: React.FC<FormDemoProps> = ({
             </p>
           )}
         </div>
-        <div className="space-y-4">
+        <div className="space-y-6 mb-6">
           {formSpec.fields.map((field) => (
-            <DemoField key={field.id} field={field} />
+            <DemoField
+              key={field.id}
+              field={field}
+              formControl={form.control}
+              form={form}
+            />
           ))}
         </div>
         <Button type="submit">
