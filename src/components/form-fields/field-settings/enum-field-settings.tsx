@@ -140,7 +140,7 @@ export function EnumFieldSettings({
                   variant="outline"
                   className="text-zinc-800 hover:text-red-600"
                 >
-                  <Trash2 strokeWidth={1.875} />
+                  <Trash2 />
                 </Button>
               </li>
             ))}

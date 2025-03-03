@@ -103,6 +103,9 @@ export type Form = {
     heading: string;
     description: string;
     submitButton: string;
+    showBackground: boolean;
+    backgroundColor: string;
+    backgroundShade: number;
   };
 
   fields: FieldWithId[];

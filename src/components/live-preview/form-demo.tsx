@@ -1,19 +1,13 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Control, FieldValues, useForm, UseFormReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { useEffect } from "react";
 import { usePlaygroundStore } from "@/stores/playground";
 import { Button } from "../ui/button";
 import { DemoField } from "./demo-fields";
+import { cn, getTailwindColorHex } from "@/lib/utils";
 
 type FormDemoProps = {
   formSchema: z.ZodObject<
@@ -68,34 +62,49 @@ export const FormDemo: React.FC<FormDemoProps> = ({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          {formSpec.metadata.heading !== "" && (
-            <h1 className="mb-1.5 text-3xl font-bold tracking-tight">
-              {formSpec.metadata.heading}
-            </h1>
-          )}
-          {formSpec.metadata.description !== "" && (
-            <p className="text-base text-zinc-500">
-              {formSpec.metadata.description}
-            </p>
-          )}
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        {formSpec.metadata.showBackground && (
+          <div
+            className="mb-4 h-40"
+            style={{
+              backgroundColor: getTailwindColorHex({
+                color: formSpec.metadata.backgroundColor,
+                shade: formSpec.metadata.backgroundShade,
+              }),
+            }}
+          />
+        )}
+        <div className={
+          cn("space-y-4 px-6 pb-4", !formSpec.metadata.showBackground && "pt-6")
+        }>
+          <div>
+            {formSpec.metadata.heading !== "" && (
+              <h1 className="mb-1.5 text-3xl font-bold tracking-tight">
+                {formSpec.metadata.heading}
+              </h1>
+            )}
+            {formSpec.metadata.description !== "" && (
+              <p className="text-base text-zinc-500">
+                {formSpec.metadata.description}
+              </p>
+            )}
+          </div>
+          <div className="mb-6 space-y-6">
+            {formSpec.fields.map((field) => (
+              <DemoField
+                key={field.id}
+                field={field}
+                formControl={form.control}
+                form={form}
+              />
+            ))}
+          </div>
+          <Button type="submit">
+            {formSpec.metadata.submitButton === ""
+              ? "Submit"
+              : formSpec.metadata.submitButton}
+          </Button>
         </div>
-        <div className="space-y-6 mb-6">
-          {formSpec.fields.map((field) => (
-            <DemoField
-              key={field.id}
-              field={field}
-              formControl={form.control}
-              form={form}
-            />
-          ))}
-        </div>
-        <Button type="submit">
-          {formSpec.metadata.submitButton === ""
-            ? "Submit"
-            : formSpec.metadata.submitButton}
-        </Button>
       </form>
     </Form>
   );

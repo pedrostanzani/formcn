@@ -7,6 +7,9 @@ const emptyForm: Form = {
     description:
       "I built this form with formcn, shadcn/ui, React Hook Form and Zod.",
     submitButton: "Submit",
+    showBackground: true,
+    backgroundColor: "amber",
+    backgroundShade: 500,
   },
   fields: [],
 };
@@ -21,6 +24,8 @@ interface PlaygroundState {
   removeField: (id: number) => void;
   setFields: (fields: FieldWithId[]) => void;
   setField: (id: number, field: FieldWithId) => void;
+  setBackground: ({ color, shade }: { color: string; shade: number }) => void;
+  setShowBackground: (showBackground: boolean) => void;
 }
 
 export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
@@ -58,6 +63,24 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
       form: {
         ...state.form,
         fields: state.form.fields.map((f) => (f.id === id ? field : f)),
+      },
+    })),
+  setBackground: ({ color, shade }: { color: string; shade: number }) =>
+    set((state) => ({
+      form: {
+        ...state.form,
+        metadata: {
+          ...state.form.metadata,
+          backgroundColor: color,
+          backgroundShade: shade,
+        },
+      },
+    })),
+  setShowBackground: (showBackground: boolean) =>
+    set((state) => ({
+      form: {
+        ...state.form,
+        metadata: { ...state.form.metadata, showBackground },
       },
     })),
 }));

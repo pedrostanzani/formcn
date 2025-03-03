@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Settings, Trash2 } from "lucide-react";
+import { Settings } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import { usePlaygroundStore } from "@/stores/playground";
@@ -17,6 +16,8 @@ import { WithId, EnumField } from "@/core/types";
 import { useHtmlDynamicId } from "@/hooks/use-html-dynamic-id";
 import { FieldCardHeader } from "./field-card-header";
 import { EnumFieldSettings } from "../field-settings/enum-field-settings";
+import { FieldCardRemoveButton } from "./field-card-remove-button";
+import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
 
 export function EnumFieldCard({ field }: { field: WithId<EnumField> }) {
   const [fieldSettingsDialogOpen, setFieldSettingsDialogOpen] = useState(false);
@@ -45,14 +46,14 @@ export function EnumFieldCard({ field }: { field: WithId<EnumField> }) {
             open={fieldSettingsDialogOpen}
             onOpenChange={setFieldSettingsDialogOpen}
           >
-            <DialogTrigger asChild>
+            <DialogTooltipTrigger tooltip="Field settings">
               <Button variant="outline">
-                <Settings className="text-zinc-800" strokeWidth={1.875} />
+                <Settings className="text-zinc-800" />
               </Button>
-            </DialogTrigger>
+            </DialogTooltipTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>Enum field</DialogTitle>
+                <DialogTitle className="text-2xl leading-none tracking-tight">Enum field</DialogTitle>
                 <DialogDescription>
                   Make changes to your form field here. Click save when
                   you&apos;re done.
@@ -80,13 +81,7 @@ export function EnumFieldCard({ field }: { field: WithId<EnumField> }) {
               />
             </DialogContent>
           </Dialog>
-          <Button
-            className="text-zinc-800 transition-colors hover:text-red-600"
-            onClick={() => removeField(field.id)}
-            variant="outline"
-          >
-            <Trash2 strokeWidth={1.875} />
-          </Button>
+          <FieldCardRemoveButton onRemove={() => removeField(field.id)} />
         </div>
       </div>
     </Fragment>
