@@ -1,5 +1,4 @@
-type StringField = {
-  id: number;
+export type StringField = {
   type: "string";
   format: "input" | "textarea" | "email" | "password";
   label?: string;
@@ -7,8 +6,7 @@ type StringField = {
   required: boolean;
 };
 
-type EnumField = {
-  id: number;
+export type EnumField = {
   type: "enum";
   format: "select" | "combobox" | "radio";
   label?: string;
@@ -19,16 +17,14 @@ type EnumField = {
   }[];
 };
 
-type BooleanField = {
-  id: number;
+export type BooleanField = {
   type: "boolean";
   format: "checkbox" | "switch";
   label?: string;
   required: boolean;
 };
 
-type NumberField = {
-  id: number;
+export type NumberField = {
   type: "number";
   format: "slider" | "input";
   label?: string;
@@ -39,8 +35,7 @@ type NumberField = {
   step?: number;
 };
 
-type DateField = {
-  id: number;
+export type DateField = {
   type: "date";
   format: "individual" | "range";
   label?: string;
@@ -49,7 +44,16 @@ type DateField = {
   futureEnabled: boolean;
 };
 
-type Field = StringField | EnumField | BooleanField | NumberField | DateField;
+export type Field =
+  | StringField
+  | EnumField
+  | BooleanField
+  | NumberField
+  | DateField;
+
+type FieldWithId = Field & {
+  id: number;
+};
 
 export type Form = {
   metadata: {
@@ -58,5 +62,5 @@ export type Form = {
     submitButton: string;
   };
 
-  fields: Field[];
+  fields: FieldWithId[];
 };

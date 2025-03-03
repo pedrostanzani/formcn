@@ -24,9 +24,11 @@ export function NewFieldDialog() {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  const closeDialog = () => setOpen(false);
+
   if (isDesktop) {
     return (
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="cursor-pointer">Add new field</Button>
         </DialogTrigger>
@@ -39,7 +41,7 @@ export function NewFieldDialog() {
               What field would you like to add to your form?
             </DialogDescription>
           </DialogHeader>
-          <FormFieldSearchableList />
+          <FormFieldSearchableList closeDialog={closeDialog} />
         </DialogContent>
       </Dialog>
     );
@@ -60,7 +62,7 @@ export function NewFieldDialog() {
               What field would you like to add to your form?
             </DrawerDescription>
           </DrawerHeader>
-          <FormFieldSearchableList />
+          <FormFieldSearchableList closeDialog={closeDialog} />
         </div>
       </DrawerContent>
     </Drawer>

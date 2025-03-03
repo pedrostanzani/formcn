@@ -23,6 +23,8 @@ import {
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { Field } from "@/core/types";
+import { usePlaygroundStore } from "@/stores/playground";
 
 type FieldOption = {
   title: string;
@@ -30,6 +32,7 @@ type FieldOption = {
   type: string;
   format: string;
   icon: LucideIcon;
+  fieldToAdd: Field;
 };
 
 const fieldTypes = ["string", "enum", "boolean", "number", "date"] as const;
@@ -51,6 +54,13 @@ const fieldSections: {
         type: "string",
         format: "input",
         icon: CaseLower,
+        fieldToAdd: {
+          type: "string",
+          format: "input",
+          label: "My string field",
+          placeholder: "Insert placeholder here...",
+          required: true,
+        },
       },
       {
         title: "Text Area",
@@ -58,6 +68,13 @@ const fieldSections: {
         type: "string",
         format: "textarea",
         icon: Text,
+        fieldToAdd: {
+          type: "string",
+          format: "textarea",
+          label: "My string field",
+          placeholder: "Insert placeholder here...",
+          required: true,
+        },
       },
       {
         title: "Email",
@@ -65,6 +82,13 @@ const fieldSections: {
         type: "string",
         format: "email",
         icon: AtSign,
+        fieldToAdd: {
+          type: "string",
+          format: "email",
+          label: "My string field",
+          placeholder: "Insert placeholder here...",
+          required: true,
+        },
       },
       {
         title: "Password",
@@ -72,6 +96,13 @@ const fieldSections: {
         type: "string",
         format: "password",
         icon: RectangleEllipsis,
+        fieldToAdd: {
+          type: "string",
+          format: "password",
+          label: "My string field",
+          placeholder: "Insert placeholder here...",
+          required: true,
+        },
       },
     ],
   },
@@ -86,6 +117,17 @@ const fieldSections: {
         type: "enum",
         format: "select",
         icon: ListCheck,
+        fieldToAdd: {
+          type: "enum",
+          format: "select",
+          label: "My enum field",
+          placeholder: "Select an option from the enum...",
+          options: [
+            { label: "Apple", value: "apple" },
+            { label: "Banana", value: "banana" },
+            { label: "Orange", value: "orange" },
+          ],
+        },
       },
       {
         title: "Combobox",
@@ -93,6 +135,17 @@ const fieldSections: {
         type: "enum",
         format: "combobox",
         icon: Component,
+        fieldToAdd: {
+          type: "enum",
+          format: "combobox",
+          label: "My enum field",
+          placeholder: "Select an option from the enum...",
+          options: [
+            { label: "Apple", value: "apple" },
+            { label: "Banana", value: "banana" },
+            { label: "Orange", value: "orange" },
+          ],
+        },
       },
       {
         title: "Radio Group",
@@ -100,6 +153,17 @@ const fieldSections: {
         type: "enum",
         format: "radio",
         icon: CircleDot,
+        fieldToAdd: {
+          type: "enum",
+          format: "radio",
+          label: "My enum field",
+          placeholder: "Select an option from the enum...",
+          options: [
+            { label: "Apple", value: "apple" },
+            { label: "Banana", value: "banana" },
+            { label: "Orange", value: "orange" },
+          ],
+        },
       },
     ],
   },
@@ -114,6 +178,12 @@ const fieldSections: {
         type: "boolean",
         format: "checkbox",
         icon: SquareCheck,
+        fieldToAdd: {
+          type: "boolean",
+          format: "checkbox",
+          label: "My boolean field",
+          required: true,
+        },
       },
       {
         title: "Switch",
@@ -121,6 +191,12 @@ const fieldSections: {
         type: "boolean",
         format: "switch",
         icon: ToggleRight,
+        fieldToAdd: {
+          type: "boolean",
+          format: "switch",
+          label: "My boolean field",
+          required: true,
+        },
       },
     ],
   },
@@ -135,6 +211,12 @@ const fieldSections: {
         type: "number",
         format: "input",
         icon: Binary,
+        fieldToAdd: {
+          type: "number",
+          format: "input",
+          label: "My number field",
+          required: true,
+        },
       },
       {
         title: "Slider",
@@ -142,6 +224,12 @@ const fieldSections: {
         type: "number",
         format: "slider",
         icon: SlidersHorizontal,
+        fieldToAdd: {
+          type: "number",
+          format: "slider",
+          label: "My number field",
+          required: true,
+        },
       },
     ],
   },
@@ -151,11 +239,19 @@ const fieldSections: {
     accentBackground: "bg-purple-600",
     fields: [
       {
-        title: "Date Picker",
+        title: "Individual Date Picker",
         description: "Select a single date from a calendar",
         type: "date",
         format: "individual",
         icon: Calendar1,
+        fieldToAdd: {
+          type: "date",
+          format: "individual",
+          label: "My date field",
+          required: true,
+          pastEnabled: true,
+          futureEnabled: true,
+        },
       },
       {
         title: "Date Range Picker",
@@ -163,12 +259,24 @@ const fieldSections: {
         type: "date",
         format: "range",
         icon: CalendarDays,
+        fieldToAdd: {
+          type: "date",
+          format: "range",
+          label: "My date field",
+          required: true,
+          pastEnabled: true,
+          futureEnabled: true,
+        },
       },
     ],
   },
 ];
 
-export function FormFieldSearchableList() {
+export function FormFieldSearchableList({
+  closeDialog,
+}: {
+  closeDialog: () => void;
+}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<(typeof fieldTypes)[number][]>([]);
 
@@ -262,6 +370,8 @@ export function FormFieldSearchableList() {
                       title={field.title}
                       description={field.description}
                       icon={field.icon}
+                      fieldToAdd={field.fieldToAdd}
+                      closeDialog={closeDialog}
                     />
                   ))}
               </div>
@@ -295,14 +405,26 @@ const FieldTypeButton = ({
   accentBackground,
   title,
   description,
+  fieldToAdd,
+  closeDialog,
 }: {
   icon: LucideIcon;
   accentBackground: string;
   title: string;
   description: string;
+  fieldToAdd: Field;
+  closeDialog: () => void;
 }) => {
+  const { addField } = usePlaygroundStore();
+
   return (
-    <button className="group flex max-w-52 shrink-0 cursor-pointer flex-col overflow-hidden rounded-md border border-zinc-200 transition-all">
+    <button
+      onClick={() => {
+        addField(fieldToAdd);
+        closeDialog();
+      }}
+      className="group flex max-w-52 shrink-0 cursor-pointer flex-col overflow-hidden rounded-md border border-zinc-200 transition-all"
+    >
       <div
         className={cn(
           "flex h-24 w-52 items-center justify-center transition-opacity group-hover:opacity-95",
