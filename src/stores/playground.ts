@@ -3,9 +3,10 @@ import { create } from "zustand";
 
 const emptyForm: Form = {
   metadata: {
-    heading: "",
-    description: "",
-    submitButton: "",
+    heading: "My New Form",
+    description:
+      "I built this form with formcn, shadcn/ui, React Hook Form and Zod.",
+    submitButton: "Submit",
   },
   fields: [],
 };

@@ -30,7 +30,7 @@ export function NewFieldDialog() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>Add new field</Button>
+          <Button className="transition-colors">Add new field</Button>
         </DialogTrigger>
         <DialogContent className="flex h-[80vh] flex-col overflow-y-scroll px-0 sm:max-w-[768px]">
           <DialogHeader className="gap-1.5 px-6">
@@ -50,7 +50,7 @@ export function NewFieldDialog() {
   return (
     <Drawer open={open} onOpenChange={setOpen} autoFocus={open}>
       <DrawerTrigger asChild>
-        <Button>Add new field</Button>
+        <Button className="transition-colors">Add new field</Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mt-2 overflow-y-scroll">

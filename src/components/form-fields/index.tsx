@@ -64,9 +64,9 @@ export function FormFields() {
             <NewFieldDialog />
             <Button
               variant="outline"
-              className="[&_svg:not([class*='size-'])]:size-3.5"
+              className="[&_svg:not([class*='size-'])]:size-3.5 group transition-colors"
             >
-              Create form with AI <Sparkles />
+              Create form with AI <Sparkles className="group-hover:fill-amber-500 transition-colors" />
             </Button>
           </div>
         </CardContent>
