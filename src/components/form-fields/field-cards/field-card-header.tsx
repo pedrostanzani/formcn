@@ -21,10 +21,10 @@ export function FieldCardHeader({
     ?.formats.find((format) => format.format === fieldFormat);
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-1.5">
       <div
         className={cn(
-          "flex h-10 w-10 items-center justify-center rounded-sm font-mono text-xs leading-none font-bold text-white select-none",
+          "flex h-9 w-9 items-center justify-center rounded-sm font-mono text-xs leading-none font-bold text-white select-none",
           fieldSection?.accentBackground ?? "bg-zinc-500",
         )}
       >
@@ -34,13 +34,13 @@ export function FieldCardHeader({
           <Square className="h-5 w-5" />
         )}
       </div>
-      <div className="flex flex-col gap-1 pt-px">
-        <span className="font-medium leading-none tracking-tight">
+      <div className="flex flex-col justify-center gap-1 pt-px">
+        <span className="leading-none font-medium tracking-tight">
           {isTruthy(fieldSection?.sectionName)
             ? fieldSection.sectionName.slice(0, -1)
             : "Unknown field"}
         </span>
-        <span className="text-zinc-500 text-sm leading-none">
+        <span className="text-sm leading-none tracking-tight text-zinc-500">
           {isTruthy(fieldFormatData?.label)
             ? fieldFormatData.label
             : "Unknown format"}

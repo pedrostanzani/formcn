@@ -37,7 +37,7 @@ export function DraggableWrapper({
       >
         <GripVertical />
       </div>
-      <div className="h-full w-full space-y-4 py-3.5 pr-3">{children}</div>
+      <div className="h-full w-full space-y-4 py-4 pr-4">{children}</div>
     </li>
   );
 }
