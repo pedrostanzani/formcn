@@ -9,8 +9,8 @@ export function FormPreview({
   return (
     <Card className={cn("flex min-h-96 flex-1 items-center justify-center px-4 text-center", className)}>
       <p className="max-w-72 text-sm text-zinc-500">
-        Add fields to the form to get started and then visualize the form
-        preview.
+        Start adding fields to the form to get started and then visualize the
+        form preview.
       </p>
     </Card>
   );
