@@ -2,6 +2,7 @@ import { FieldType, FieldWithId } from "@/core/types";
 
 import { StringFieldCard } from "./string-field-card";
 import { EnumFieldCard } from "./enum-field-card";
+import { BooleanFieldCard } from "./boolean-field-card";
 
 export function FieldCard({
   field
@@ -14,6 +15,9 @@ export function FieldCard({
 
     case FieldType.Enum:
       return <EnumFieldCard field={field} />
+
+    case FieldType.Boolean:
+      return <BooleanFieldCard field={field} />
 
     default:
       break;

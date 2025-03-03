@@ -2,6 +2,7 @@ import { Field, FieldType, WithId } from "@/core/types";
 import { StringDemoField } from "./string-demo-field";
 import { EnumDemoField } from "./enum-demo-field";
 import { Control, FieldValues, UseFormReturn } from "react-hook-form";
+import { BooleanDemoField } from "./boolean-demo-field";
 
 export function DemoField({
   field,
@@ -19,6 +20,11 @@ export function DemoField({
     case FieldType.Enum:
       return (
         <EnumDemoField field={field} formControl={formControl} form={form} />
+      );
+
+    case FieldType.Boolean:
+      return (
+        <BooleanDemoField field={field} form={form} />
       );
 
     default:

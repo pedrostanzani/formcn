@@ -64,7 +64,8 @@ export type BooleanField = {
   type: FieldType.Boolean;
   format: BooleanFieldFormat;
   label?: string;
-  required: boolean;
+  description?: string;
+  asCard: boolean;
 };
 
 export type NumberField = {

@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -107,9 +106,6 @@ export function EnumFieldSettings({
                   <SelectItem value="radio">Radio Group</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                Choose the format of the field: select, combobox or radio group.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

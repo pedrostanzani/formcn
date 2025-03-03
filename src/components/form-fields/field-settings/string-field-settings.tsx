@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -86,10 +85,6 @@ export function StringFieldSettings({
                   <SelectItem value="password">Password</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                Choose the format of the field: standard input, textarea, email
-                or password.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
