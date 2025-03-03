@@ -182,21 +182,21 @@ export function FormFieldSearchableList() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="top-0 flex md:px-6 flex-col gap-3 bg-white md:flex-row">
-        <div className="px-6 md:px-0 w-full md:order-2">
+      <div className="mb-4 flex flex-col gap-3 md:flex-row md:px-6">
+        <div className="w-full px-4 md:order-2 md:px-0">
           <div className="relative w-full">
             <Search className="absolute top-2.5 left-2.5 h-4 w-4 text-zinc-500" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-8 md:order-1 md:max-w-sm"
+              className="pl-8 md:max-w-sm"
               type="text"
               placeholder="Search for a field type..."
             />
           </div>
         </div>
-        <div className="mb-7 flex gap-2 overflow-x-scroll md:overflow-x-visible">
-          <div className="flex pl-6 last:pr-6 md:pl-0 md:last:pr-0 gap-2" key="filter-types">
+        <div className="flex gap-2 overflow-x-scroll pl-4 last:pr-4 md:order-1 md:overflow-x-visible md:pl-0 md:last:pr-0">
+          <div className="flex gap-2" key="filter-types">
             {fieldTypes.map((fieldType) => (
               <Button
                 key={fieldType}
@@ -221,13 +221,17 @@ export function FormFieldSearchableList() {
               (filters.includes(fieldSection.type) || filters.length === 0) &&
               fieldSection.fields.some(
                 (field) =>
-                  field.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                  field.description.toLowerCase().includes(searchQuery.toLowerCase())
+                  field.title
+                    .toLowerCase()
+                    .includes(searchQuery.toLowerCase()) ||
+                  field.description
+                    .toLowerCase()
+                    .includes(searchQuery.toLowerCase()),
               ),
           )
           .map((fieldSection) => (
             <div key={fieldSection.type}>
-              <div className="mb-4 flex items-center gap-2 px-6">
+              <div className="mb-4 flex items-center gap-2 px-4 md:px-6">
                 <div
                   className={cn(
                     "flex h-8 w-8 items-center justify-center rounded-sm font-mono text-xs leading-none font-bold text-white select-none",
@@ -240,7 +244,7 @@ export function FormFieldSearchableList() {
                   {fieldSection.sectionName}
                 </h3>
               </div>
-              <div className="flex gap-2 overflow-x-scroll pl-6 last:pr-4">
+              <div className="flex gap-2 overflow-x-scroll pl-4 last:pr-4 md:pl-6">
                 {fieldSection.fields
                   .filter(
                     (field) =>
@@ -269,14 +273,16 @@ export function FormFieldSearchableList() {
             fieldSection.fields.some(
               (field) =>
                 field.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                field.description.toLowerCase().includes(searchQuery.toLowerCase())
+                field.description
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase()),
             ),
         ).length === 0 && (
-          <div className="flex flex-col justify-center items-center gap-5 h-full text-zinc-500">
+          <div className="flex h-full flex-col items-center justify-center gap-5 text-zinc-500">
             <CircleOff className="size-10" />
-          <p className="text-center tracking-tight">
-            No matching fields found. Try a different search term.
-          </p>
+            <p className="text-center tracking-tight">
+              No matching fields found. Try a different search term.
+            </p>
           </div>
         )}
       </div>
