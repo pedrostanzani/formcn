@@ -37,7 +37,7 @@ export function CodePreview({ sourceCode, className }: { sourceCode: string, cla
   }, [sourceCode]);
 
   return (
-    <div className={cn("relative overflow-hidden rounded-xl bg-[#090b0e]", className)}>
+    <div className={cn("relative min-h-96 overflow-hidden rounded-xl bg-[#090b0e]", className)}>
       <div
         className="max-h-96 overflow-y-scroll p-4 text-xs"
         dangerouslySetInnerHTML={{ __html: html }}
