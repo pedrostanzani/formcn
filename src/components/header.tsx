@@ -29,7 +29,7 @@ export function Header() {
           <DialogTrigger asChild>
             <Button
               variant="secondary"
-              className="cursor-pointer rounded-xl bg-neutral-300 transition-colors hover:bg-neutral-300/80"
+              className="rounded-xl bg-neutral-300 transition-colors hover:bg-neutral-300/80"
             >
               Sign in
             </Button>
@@ -49,7 +49,7 @@ export function Header() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 w-full cursor-pointer transition-colors"
+                  className="h-12 w-full transition-colors"
                 >
                   Back
                 </Button>

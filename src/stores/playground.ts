@@ -1,4 +1,4 @@
-import { Field, Form } from "@/core/types";
+import { Field, FieldWithId, Form } from "@/core/types";
 import { create } from "zustand";
 
 const emptyForm: Form = {
@@ -17,6 +17,9 @@ interface PlaygroundState {
   form: Form;
   nextFieldId: number;
   addField: (field: Field) => void;
+  removeField: (id: number) => void;
+  setFields: (fields: FieldWithId[]) => void;
+  setField: (id: number, field: FieldWithId) => void;
 }
 
 export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
@@ -34,10 +37,26 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         fields: [
           ...state.form.fields,
           {
-            id: state.nextFieldId,
             ...field,
+            id: state.nextFieldId,
           },
         ],
+      },
+    })),
+  removeField: (id: number) =>
+    set((state) => ({
+      form: {
+        ...state.form,
+        fields: state.form.fields.filter((field) => field.id !== id),
+      },
+    })),
+  setFields: (fields: FieldWithId[]) =>
+    set((state) => ({ form: { ...state.form, fields } })),
+  setField: (id: number, field: FieldWithId) =>
+    set((state) => ({
+      form: {
+        ...state.form,
+        fields: state.form.fields.map((f) => (f.id === id ? field : f)),
       },
     })),
 }));

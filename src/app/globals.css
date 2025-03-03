@@ -42,3 +42,14 @@ body {
   animation: rotate 20s linear infinite;
   background: linear-gradient(var(--angle),#02fcef70 0,#ffb52b70 50%,#a02bfe70 100%);
 }
+
+@layer base {
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role='button']:disabled {
+    cursor: default;
+  }
+}

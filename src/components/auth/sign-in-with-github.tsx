@@ -12,7 +12,7 @@ export function SignInWithGitHub() {
     >
       <Button
         type="submit"
-        className="h-12 w-full cursor-pointer bg-zinc-800 transition-colors hover:bg-zinc-800/80"
+        className="h-12 w-full bg-zinc-800 transition-colors hover:bg-zinc-800/80"
       >
         <GitHub className="fill-white" />
         Continue with GitHub

@@ -1,14 +1,50 @@
+export enum StringFieldFormat {
+  Input = "input",
+  Textarea = "textarea",
+  Email = "email",
+  Password = "password",
+}
+
+export enum EnumFieldFormat {
+  Select = "select",
+  Combobox = "combobox",
+  Radio = "radio",
+}
+
+export enum BooleanFieldFormat {
+  Checkbox = "checkbox",
+  Switch = "switch",
+}
+
+export enum NumberFieldFormat {
+  Slider = "slider",
+  Input = "input",
+}
+
+export enum DateFieldFormat {
+  Individual = "individual",
+  Range = "range",
+}
+
+export enum FieldType {
+  String = "string",
+  Enum = "enum",
+  Boolean = "boolean",
+  Number = "number",
+  Date = "date",
+}
+
 export type StringField = {
-  type: "string";
-  format: "input" | "textarea" | "email" | "password";
+  type: FieldType.String;
+  format: StringFieldFormat;
   label?: string;
   placeholder?: string;
   required: boolean;
 };
 
 export type EnumField = {
-  type: "enum";
-  format: "select" | "combobox" | "radio";
+  type: FieldType.Enum;
+  format: EnumFieldFormat;
   label?: string;
   placeholder?: string;
   options: {
@@ -18,15 +54,15 @@ export type EnumField = {
 };
 
 export type BooleanField = {
-  type: "boolean";
-  format: "checkbox" | "switch";
+  type: FieldType.Boolean;
+  format: BooleanFieldFormat;
   label?: string;
   required: boolean;
 };
 
 export type NumberField = {
-  type: "number";
-  format: "slider" | "input";
+  type: FieldType.Number;
+  format: NumberFieldFormat;
   label?: string;
   placeholder?: string;
   required: boolean;
@@ -36,8 +72,8 @@ export type NumberField = {
 };
 
 export type DateField = {
-  type: "date";
-  format: "individual" | "range";
+  type: FieldType.Date;
+  format: DateFieldFormat;
   label?: string;
   required: boolean;
   pastEnabled: boolean;
@@ -51,9 +87,9 @@ export type Field =
   | NumberField
   | DateField;
 
-type FieldWithId = Field & {
-  id: number;
-};
+export type WithId<T> = T & { id: number };
+
+export type FieldWithId = WithId<Field>;
 
 export type Form = {
   metadata: {
