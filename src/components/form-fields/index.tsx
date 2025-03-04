@@ -27,9 +27,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { birthdayRSVPForm } from "@/static/templates";
 
 export function FormFields() {
-  const { form, setFields } = usePlaygroundStore();
+  const searchParams = useSearchParams();
+  const template = searchParams.get("template");
+
+  const { form, setFields, setForm } = usePlaygroundStore();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -46,6 +52,13 @@ export function FormFields() {
       setFields(arrayMove(form.fields, oldIndex, newIndex));
     }
   };
+
+  useEffect(() => {
+    if (template === "birthday") {
+      setForm(birthdayRSVPForm);
+    }
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, []);
 
   if (form.fields.length === 0) {
     return (
@@ -64,9 +77,10 @@ export function FormFields() {
             <NewFieldDialog />
             <Button
               variant="outline"
-              className="[&_svg:not([class*='size-'])]:size-3.5 group transition-colors"
+              className="group transition-colors [&_svg:not([class*='size-'])]:size-3.5"
             >
-              Create form with AI <Sparkles className="group-hover:fill-amber-500 transition-colors" />
+              Create form with AI{" "}
+              <Sparkles className="transition-colors group-hover:fill-amber-500" />
             </Button>
           </div>
         </CardContent>

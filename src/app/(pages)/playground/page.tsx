@@ -1,6 +1,7 @@
 import { LivePreview } from "@/components/live-preview";
 import { PreviewTabs } from "@/components/live-preview/preview-tabs";
 import { FormFields } from "@/components/form-fields";
+import { Suspense } from "react";
 
 export default function PlaygroundPage() {
   return (
@@ -9,7 +10,9 @@ export default function PlaygroundPage() {
         <h2 className="mb-3 flex h-9 items-center text-xl font-bold tracking-tight">
           Form fields
         </h2>
-        <FormFields />
+        <Suspense>
+          <FormFields />
+        </Suspense>
       </div>
       <div className="w-full sm:w-1/2">
         <div className="mb-3 flex items-center justify-between">

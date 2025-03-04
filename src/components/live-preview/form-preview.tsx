@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Paintbrush, PaintBucket, Settings2, Trash2 } from "lucide-react";
+import { Paintbrush, PaintBucket, Trash2 } from "lucide-react";
 
 import { usePlaygroundStore } from "@/stores/playground";
 import { generateFormZodSchema } from "@/core";
@@ -62,7 +62,7 @@ export function FormPreview({ className }: { className?: string }) {
         formValues={formValues}
         setFormValues={setFormValues}
       />
-      <TooltipProvider>
+      {/* <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
@@ -77,7 +77,7 @@ export function FormPreview({ className }: { className?: string }) {
             <p>Customize form</p>
           </TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider> */}
       <DropdownMenu>
         <TooltipProvider>
           <Tooltip>

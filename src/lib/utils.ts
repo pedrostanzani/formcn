@@ -88,3 +88,13 @@ export function getTailwindColorHex({
 }): string {
   return tailwindColors[color][shade];
 }
+
+export function extractInitials(name: string): string {
+  // Split the name by whitespace, filter out any empty strings,
+  // then map each word to its first character (uppercased)
+  return name
+    .split(/\s+/)
+    .filter((word) => word.length > 0)
+    .map((word) => word[0].toUpperCase())
+    .join("");
+}

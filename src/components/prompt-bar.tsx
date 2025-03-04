@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Play, ArrowUp } from "lucide-react";
+import { Play, ArrowUp, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,22 +25,41 @@ export function PromptBar() {
           <ArrowUp />
         </Button>
       </div>
-      <Button
-        asChild
-        variant="default"
-        disabled={prompt.length !== 0}
-        className="mt-4 flex items-center gap-2 self-end transition-all [&_svg:not([class*='size-'])]:size-3"
-      >
-        <Link
-          className={cn(
-            prompt.length !== 0 && "pointer-events-none opacity-50",
-          )}
-          href="/playground"
+      <div className="flex flex-row gap-2">
+        <Button
+          asChild
+          variant="outline"
+          disabled={prompt.length !== 0}
+          className="mt-4 group flex items-center gap-2 self-end transition-all [&_svg:not([class*='size-'])]:size-3"
         >
-          Or, get started without AI
-          <Play size={8} className="fill-white" />
-        </Link>
-      </Button>
+          <Link
+            className={cn(
+              prompt.length !== 0 && "pointer-events-none opacity-50",
+            )}
+            href="/playground?template=birthday"
+          >
+            Birthday invite template
+            <PartyPopper size={8} className="text-red-500 group-hover:text-red-600" />
+          </Link>
+        </Button>
+
+        <Button
+          asChild
+          variant="default"
+          disabled={prompt.length !== 0}
+          className="mt-4 flex items-center gap-2 self-end transition-all [&_svg:not([class*='size-'])]:size-3"
+        >
+          <Link
+            className={cn(
+              prompt.length !== 0 && "pointer-events-none opacity-50",
+            )}
+            href="/playground"
+          >
+            Or, get started without AI
+            <Play size={8} className="fill-white" />
+          </Link>
+        </Button>
+      </div>
     </>
   );
 }

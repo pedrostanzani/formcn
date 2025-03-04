@@ -22,6 +22,7 @@ interface PlaygroundState {
   nextFieldId: number;
   addField: (field: Field) => void;
   removeField: (id: number) => void;
+  setForm: (form: Form) => void;
   setFields: (fields: FieldWithId[]) => void;
   setField: (id: number, field: FieldWithId) => void;
   setBackground: ({ color, shade }: { color: string; shade: number }) => void;
@@ -56,6 +57,7 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         fields: state.form.fields.filter((field) => field.id !== id),
       },
     })),
+  setForm: (form: Form) => set({ form }),
   setFields: (fields: FieldWithId[]) =>
     set((state) => ({ form: { ...state.form, fields } })),
   setField: (id: number, field: FieldWithId) =>
