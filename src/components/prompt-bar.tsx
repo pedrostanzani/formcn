@@ -25,12 +25,12 @@ export function PromptBar() {
           <ArrowUp />
         </Button>
       </div>
-      <div className="flex flex-row gap-2">
+      <div className="mt-4 flex flex-col items-center sm:flex-row gap-2">
         <Button
           asChild
           variant="outline"
           disabled={prompt.length !== 0}
-          className="mt-4 group flex items-center gap-2 self-end transition-all [&_svg:not([class*='size-'])]:size-3"
+          className="group flex items-center gap-2 transition-all [&_svg:not([class*='size-'])]:size-3"
         >
           <Link
             className={cn(
@@ -47,7 +47,7 @@ export function PromptBar() {
           asChild
           variant="default"
           disabled={prompt.length !== 0}
-          className="mt-4 flex items-center gap-2 self-end transition-all [&_svg:not([class*='size-'])]:size-3"
+          className="flex items-center gap-2 transition-all [&_svg:not([class*='size-'])]:size-3"
         >
           <Link
             className={cn(
