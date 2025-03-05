@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Field, FieldType, StringFieldFormat, WithId } from "./types";
+import { FORM_SCHEMA_VARIABLE_NAME } from "./static/source-code";
 
 export function generateFieldKey(fieldId: number) {
   return `field_${fieldId}`;
@@ -36,6 +37,13 @@ function parseField(field: WithId<Field>) {
         propValueInSourceCode: `z.string()`,
         defaultValue: "",
       };
+
+    case FieldType.Boolean:
+      return {
+        fieldZodSchema: z.boolean().default(false),
+        propValueInSourceCode: `z.boolean().default(false)`,
+        defaultValue: false,
+      };
   }
 
   return null;
@@ -59,7 +67,7 @@ export function generateFormZodSchema(fields: WithId<Field>[]) {
   });
 
   const schemaSourceCode =
-    `const formSchema = z.object({\n` +
+    `const ${FORM_SCHEMA_VARIABLE_NAME} = z.object({\n` +
     Object.entries(schemaSourceKeyValues)
       .map(([key, value]) => `  ${key}: ${value},`)
       .join("\n") +

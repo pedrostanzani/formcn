@@ -29,13 +29,31 @@ import {
 } from "@/components/ui/tooltip";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { BackgroundColorPicker } from "./background-color-picker";
+import { z } from "zod";
 
-export function FormPreview({ className }: { className?: string }) {
+export function FormPreview({
+  className,
+  formSchema,
+  defaultValues,
+}: {
+  className?: string;
+  formSchema: z.ZodObject<
+    Record<string, z.ZodTypeAny>,
+    "strip",
+    z.ZodTypeAny,
+    {
+      [x: string]: any;
+    },
+    {
+      [x: string]: any;
+    }
+  >;
+  defaultValues: Record<string, any>;
+}) {
   const [formValues, setFormValues] = useState<Record<string, any>>({});
   const [backgroundDialogOpen, setBackgroundDialogOpen] = useState(false);
 
   const { form, nextFieldId, setShowBackground } = usePlaygroundStore();
-  const { formSchema, defaultValues } = generateFormZodSchema(form.fields);
 
   if (form.fields.length === 0) {
     return (
