@@ -2,7 +2,6 @@ import { LivePreview } from "@/components/live-preview";
 import { PreviewTabs } from "@/components/live-preview/preview-tabs";
 import { FormFields } from "@/components/form-fields";
 import { Suspense } from "react";
-import { Debug } from "@/components/debug";
 
 export default function PlaygroundPage() {
   return (
@@ -24,7 +23,6 @@ export default function PlaygroundPage() {
           <LivePreview />
         </div>
       </main>
-      <Debug />
     </>
   );
 }
