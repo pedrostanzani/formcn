@@ -9,20 +9,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { generateFieldKey } from "@/core";
-import { StringField, StringFieldFormat, WithId } from "@/core/types";
+import { StringField, StringFieldFormat, WithIdAndKey } from "@/core/types";
 
 export function StringDemoField({
   field: fieldSpec,
   formControl,
 }: {
-  field: WithId<StringField>;
+  field: WithIdAndKey<StringField>;
   formControl: Control<FieldValues> | undefined;
 }) {
   return (
     <FormField
       control={formControl}
-      name={generateFieldKey(fieldSpec.id)}
+      name={fieldSpec.key}
       render={({ field }) => (
         <FormItem>
           {fieldSpec.label && <FormLabel>{fieldSpec.label}</FormLabel>}

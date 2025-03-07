@@ -1,6 +1,5 @@
 import { FieldValues, UseFormReturn } from "react-hook-form";
-import { BooleanField, BooleanFieldFormat, WithId } from "@/core/types";
-import { generateFieldKey } from "@/core";
+import { BooleanField, BooleanFieldFormat, WithIdAndKey } from "@/core/types";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -17,14 +16,14 @@ export function BooleanDemoField({
   field: fieldSpec,
   form,
 }: {
-  field: WithId<BooleanField>;
+  field: WithIdAndKey<BooleanField>;
   form: UseFormReturn<FieldValues, any, undefined>;
 }) {
   if (fieldSpec.format === BooleanFieldFormat.Checkbox) {
     return (
       <FormField
         control={form.control}
-        name={generateFieldKey(fieldSpec.id)}
+        name={fieldSpec.key}
         render={({ field }) => (
           <FormItem
             className={cn(
@@ -55,7 +54,7 @@ export function BooleanDemoField({
   return (
     <FormField
       control={form.control}
-      name={generateFieldKey(fieldSpec.id)}
+      name={fieldSpec.key}
       render={({ field }) => (
         <FormItem
           className={cn(

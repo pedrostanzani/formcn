@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Paintbrush, PaintBucket, Trash2 } from "lucide-react";
 
 import { usePlaygroundStore } from "@/stores/playground";
-import { generateFormZodSchema } from "@/core";
 import { cn } from "@/lib/utils";
 
 import {

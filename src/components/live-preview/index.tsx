@@ -16,6 +16,7 @@ export function LivePreview() {
   const sourceCode = generateSourceCode({
     schemaSourceCode,
     form,
+    defaultValues,
   });
 
   return (

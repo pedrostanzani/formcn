@@ -1,3 +1,4 @@
+import { generateFieldKey } from "@/core";
 import { Field, FieldWithId, Form } from "@/core/types";
 import { create } from "zustand";
 
@@ -45,6 +46,7 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
           ...state.form.fields,
           {
             ...field,
+            key: generateFieldKey(state.nextFieldId),
             id: state.nextFieldId,
           },
         ],

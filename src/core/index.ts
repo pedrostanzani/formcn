@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { Field, FieldType, StringFieldFormat, WithId } from "./types";
+import { EnumFieldFormat, Field, FieldType, StringFieldFormat, WithIdAndKey } from "./types";
 import { FORM_SCHEMA_VARIABLE_NAME } from "./static/source-code";
 
 export function generateFieldKey(fieldId: number) {
   return `field_${fieldId}`;
 }
 
-function parseField(field: WithId<Field>) {
+function parseField(field: WithIdAndKey<Field>) {
   switch (field.type) {
     case FieldType.String:
       if (field.format === StringFieldFormat.Email) {
@@ -32,6 +32,16 @@ function parseField(field: WithId<Field>) {
       }
 
     case FieldType.Enum:
+      if (field.format === EnumFieldFormat.Radio) {
+        const options = field.options.map((option) => option.value) as [string, ...string[]];
+        
+        return {
+          fieldZodSchema: z.enum(options),
+          propValueInSourceCode: `z.enum(${JSON.stringify(options)})`,
+          defaultValue: undefined,
+        }
+      }
+
       return {
         fieldZodSchema: z.string(),
         propValueInSourceCode: `z.string()`,
@@ -49,21 +59,19 @@ function parseField(field: WithId<Field>) {
   return null;
 }
 
-export function generateFormZodSchema(fields: WithId<Field>[]) {
+export function generateFormZodSchema(fields: WithIdAndKey<Field>[]) {
   const defaultValues: Record<string, any> = {};
   const schemaShape: Record<string, z.ZodTypeAny> = {};
   const schemaSourceKeyValues: Record<string, string> = {};
 
   fields.forEach((field) => {
-    const key = generateFieldKey(field.id);
-
     const parsedField = parseField(field);
     if (!parsedField) return;
 
     const { fieldZodSchema, defaultValue, propValueInSourceCode } = parsedField;
-    schemaShape[key] = fieldZodSchema;
-    defaultValues[key] = defaultValue;
-    schemaSourceKeyValues[key] = propValueInSourceCode;
+    schemaShape[field.key] = fieldZodSchema;
+    defaultValues[field.key] = defaultValue;
+    schemaSourceKeyValues[field.key] = propValueInSourceCode;
   });
 
   const schemaSourceCode =

@@ -23,6 +23,7 @@ export const birthdayRSVPForm: Form = {
       label: "Name",
       placeholder: "Enter your full name",
       required: true,
+      key: "name",
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ export const birthdayRSVPForm: Form = {
       label: "Email",
       placeholder: "Enter your email address",
       required: true,
+      key: "email",
     },
     {
       id: 3,
@@ -39,6 +41,7 @@ export const birthdayRSVPForm: Form = {
       label: "Phone Number",
       placeholder: "Enter your phone number",
       required: true,
+      key: "phone",
     },
     {
       id: 4,
@@ -51,6 +54,7 @@ export const birthdayRSVPForm: Form = {
         { label: "Beef", value: "beef" },
         { label: "Vegetarian", value: "vegetarian" },
       ],
+      key: "mealChoice",
     },
     {
       id: 5,
@@ -59,6 +63,7 @@ export const birthdayRSVPForm: Form = {
       label: "Will you attend?",
       description: "Check if you will attend the birthday party",
       asCard: false,
+      key: "willAttend",
     },
     {
       id: 6,
@@ -67,6 +72,7 @@ export const birthdayRSVPForm: Form = {
       label: "Bringing a plus one?",
       description: "Check if you are bringing a plus one",
       asCard: false,
+      key: "bringingPlusOne",
     },
   ],
 };

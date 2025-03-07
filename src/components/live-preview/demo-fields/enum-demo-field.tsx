@@ -30,8 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { generateFieldKey } from "@/core";
-import { EnumField, WithId } from "@/core/types";
+import { EnumField, WithIdAndKey } from "@/core/types";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -40,7 +39,7 @@ export function EnumDemoField({
   formControl,
   form,
 }: {
-  field: WithId<EnumField>;
+  field: WithIdAndKey<EnumField>;
   formControl: Control<FieldValues> | undefined;
   form: UseFormReturn<FieldValues, any, undefined>;
 }) {
@@ -48,7 +47,7 @@ export function EnumDemoField({
     return (
       <FormField
         control={formControl}
-        name={generateFieldKey(fieldSpec.id)}
+        name={fieldSpec.key}
         render={({ field }) => (
           <FormItem>
             {fieldSpec.label && <FormLabel>{fieldSpec.label}</FormLabel>}
@@ -77,7 +76,7 @@ export function EnumDemoField({
     return (
       <FormField
         control={formControl}
-        name={generateFieldKey(fieldSpec.id)}
+        name={fieldSpec.key}
         render={({ field }) => (
           <FormItem className="space-y-3">
             {fieldSpec.label && <FormLabel>{fieldSpec.label}</FormLabel>}
@@ -110,7 +109,7 @@ export function EnumDemoField({
   return (
     <FormField
       control={formControl}
-      name={generateFieldKey(fieldSpec.id)}
+      name={fieldSpec.key}
       render={({ field }) => (
         <FormItem className="flex flex-col">
           {fieldSpec.label && <FormLabel>{fieldSpec.label}</FormLabel>}
@@ -144,9 +143,7 @@ export function EnumDemoField({
                       <CommandItem
                         value={value}
                         key={value}
-                        onSelect={() => {
-                          form.setValue(generateFieldKey(fieldSpec.id), value);
-                        }}
+                        onSelect={() => form.setValue(fieldSpec.key, value)}
                       >
                         {label}
                         <Check

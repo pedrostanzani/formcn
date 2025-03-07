@@ -10,7 +10,7 @@ import {
 import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
 
 import { usePlaygroundStore } from "@/stores/playground";
-import { WithId, BooleanField } from "@/core/types";
+import { WithIdAndKey, BooleanField } from "@/core/types";
 import { useHtmlDynamicId } from "@/hooks/use-html-dynamic-id";
 import { FieldCardHeader } from "./field-card-header";
 import { FieldCardRemoveButton } from "./field-card-remove-button";
@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Settings } from "lucide-react";
 import { BooleanFieldSettings } from "../field-settings/boolean-field-settings";
 
-export function BooleanFieldCard({ field }: { field: WithId<BooleanField> }) {
+export function BooleanFieldCard({ field }: { field: WithIdAndKey<BooleanField> }) {
   const [fieldSettingsDialogOpen, setFieldSettingsDialogOpen] = useState(false);
 
   const { setField, removeField } = usePlaygroundStore();

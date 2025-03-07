@@ -95,9 +95,9 @@ export type Field =
   | NumberField
   | DateField;
 
-export type WithId<T> = T & { id: number };
+export type WithIdAndKey<T> = T & { id: number; key: string };
 
-export type FieldWithId = WithId<Field>;
+export type FieldWithId = WithIdAndKey<Field>;
 
 export type Form = {
   metadata: {

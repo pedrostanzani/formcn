@@ -12,14 +12,14 @@ import {
 } from "@/components/ui/dialog";
 
 import { usePlaygroundStore } from "@/stores/playground";
-import { WithId, EnumField } from "@/core/types";
+import { WithIdAndKey, EnumField } from "@/core/types";
 import { useHtmlDynamicId } from "@/hooks/use-html-dynamic-id";
 import { FieldCardHeader } from "./field-card-header";
 import { EnumFieldSettings } from "../field-settings/enum-field-settings";
 import { FieldCardRemoveButton } from "./field-card-remove-button";
 import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
 
-export function EnumFieldCard({ field }: { field: WithId<EnumField> }) {
+export function EnumFieldCard({ field }: { field: WithIdAndKey<EnumField> }) {
   const [fieldSettingsDialogOpen, setFieldSettingsDialogOpen] = useState(false);
   const { setField, removeField } = usePlaygroundStore();
   const { getFormFieldId } = useHtmlDynamicId(field.id);

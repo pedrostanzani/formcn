@@ -13,14 +13,14 @@ import {
 } from "@/components/ui/dialog";
 
 import { usePlaygroundStore } from "@/stores/playground";
-import { WithId, StringField } from "@/core/types";
+import { WithIdAndKey, StringField } from "@/core/types";
 import { useHtmlDynamicId } from "@/hooks/use-html-dynamic-id";
 import { StringFieldSettings } from "../field-settings/string-field-settings";
 import { FieldCardHeader } from "./field-card-header";
 import { FieldCardRemoveButton } from "./field-card-remove-button";
 import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
 
-export function StringFieldCard({ field }: { field: WithId<StringField> }) {
+export function StringFieldCard({ field }: { field: WithIdAndKey<StringField> }) {
   const [fieldSettingsDialogOpen, setFieldSettingsDialogOpen] = useState(false);
   const { setField, removeField } = usePlaygroundStore();
   const { getFormFieldId } = useHtmlDynamicId(field.id);

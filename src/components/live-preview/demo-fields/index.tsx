@@ -1,4 +1,4 @@
-import { Field, FieldType, WithId } from "@/core/types";
+import { Field, FieldType, WithIdAndKey } from "@/core/types";
 import { StringDemoField } from "./string-demo-field";
 import { EnumDemoField } from "./enum-demo-field";
 import { Control, FieldValues, UseFormReturn } from "react-hook-form";
@@ -9,7 +9,7 @@ export function DemoField({
   formControl,
   form,
 }: {
-  field: WithId<Field>;
+  field: WithIdAndKey<Field>;
   formControl: Control<FieldValues> | undefined;
   form: UseFormReturn<FieldValues, any, undefined>;
 }) {
