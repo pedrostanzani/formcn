@@ -32,7 +32,7 @@ export const FormDemo: React.FC<FormDemoProps> = ({
   formValues,
   setFormValues,
 }) => {
-  const { form: formSpec } = usePlaygroundStore();
+  const { form: formSpec, setPayloadPreview } = usePlaygroundStore();
 
   // When we insert a new field, the key (which is the nextFieldId) passed to FormDemo is incremented.
   // This causes the form to be recreated with new values.
@@ -49,7 +49,8 @@ export const FormDemo: React.FC<FormDemoProps> = ({
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     // TODO: Implement submission preview
-    console.log(values);
+    const payload = JSON.stringify(values, null, 2);
+    setPayloadPreview(payload);
   }
 
   // This useEffect hook is used to keep the form values in sync with the form state.

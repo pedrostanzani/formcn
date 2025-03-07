@@ -29,6 +29,9 @@ interface PlaygroundState {
   setField: (id: number, field: FieldWithId) => void;
   setBackground: ({ color, shade }: { color: string; shade: number }) => void;
   setShowBackground: (showBackground: boolean) => void;
+
+  payloadPreview: string | null;
+  setPayloadPreview: (payloadPreview: string | null) => void;
 }
 
 export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
@@ -90,4 +93,7 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         metadata: { ...state.form.metadata, showBackground },
       },
     })),
+
+  payloadPreview: null,
+  setPayloadPreview: (payloadPreview: string | null) => set({ payloadPreview }),
 }));

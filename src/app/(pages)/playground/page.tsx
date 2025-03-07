@@ -2,6 +2,7 @@ import { LivePreview } from "@/components/live-preview";
 import { PreviewTabs } from "@/components/live-preview/preview-tabs";
 import { FormFields } from "@/components/form-fields";
 import { Suspense } from "react";
+import { PayloadPreview } from "@/components/live-preview/payload-preview";
 
 export default function PlaygroundPage() {
   return (
@@ -15,12 +16,13 @@ export default function PlaygroundPage() {
             <FormFields />
           </Suspense>
         </div>
-        <div className="w-full sm:w-1/2">
+        <div className="w-full space-y-5 sm:w-1/2">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-xl font-bold tracking-tight">Preview</h2>
             <PreviewTabs />
           </div>
           <LivePreview />
+          <PayloadPreview />
         </div>
       </main>
     </>
