@@ -35,7 +35,7 @@ export async function Header() {
         </Link>
       </div>
       <Tagline />
-      <div>
+      <div className="absolute right-4 md:right-6">
         {session ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
