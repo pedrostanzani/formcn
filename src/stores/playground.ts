@@ -1,5 +1,5 @@
 import { generateFieldKey } from "@/core";
-import { Field, FieldWithId, Form } from "@/core/types";
+import { Field, FieldWithId, Form, FormMetadata } from "@/core/types";
 import { create } from "zustand";
 
 const emptyForm: Form = {
@@ -23,6 +23,7 @@ interface PlaygroundState {
   nextFieldId: number;
   addField: (field: Field) => void;
   removeField: (id: number) => void;
+  setMetadata: (metadata: FormMetadata) => void;
   setForm: (form: Form) => void;
   setFields: (fields: FieldWithId[]) => void;
   setField: (id: number, field: FieldWithId) => void;
@@ -59,6 +60,8 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         fields: state.form.fields.filter((field) => field.id !== id),
       },
     })),
+  setMetadata: (metadata: FormMetadata) =>
+    set((state) => ({ form: { ...state.form, metadata } })),
   setForm: (form: Form) => set({ form }),
   setFields: (fields: FieldWithId[]) =>
     set((state) => ({ form: { ...state.form, fields } })),

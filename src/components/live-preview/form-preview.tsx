@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Paintbrush, PaintBucket, Trash2 } from "lucide-react";
+import { LetterText, Paintbrush, PaintBucket, Trash2 } from "lucide-react";
 
 import { usePlaygroundStore } from "@/stores/playground";
 import { cn } from "@/lib/utils";
@@ -29,6 +29,8 @@ import {
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { BackgroundColorPicker } from "./background-color-picker";
 import { z } from "zod";
+import { DialogTooltipTrigger } from "../dialog-tooltip-trigger";
+import { CustomizeHeadingAndDescription } from "./customize-heading-description";
 
 export function FormPreview({
   className,
@@ -50,6 +52,7 @@ export function FormPreview({
   defaultValues: Record<string, any>;
 }) {
   const [formValues, setFormValues] = useState<Record<string, any>>({});
+  const [editHeadingDialogOpen, setEditHeadingDialogOpen] = useState(false);
   const [backgroundDialogOpen, setBackgroundDialogOpen] = useState(false);
 
   const { form, nextFieldId, setShowBackground } = usePlaygroundStore();
@@ -165,6 +168,28 @@ export function FormPreview({
           <BackgroundColorPicker
             closeDialog={() => setBackgroundDialogOpen(false)}
           />
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={editHeadingDialogOpen}
+        onOpenChange={setEditHeadingDialogOpen}
+      >
+        <DialogTooltipTrigger
+          className="absolute top-[191px] right-4"
+          tooltip="Customize heading"
+          side="bottom"
+        >
+          <Button variant="outline" size="icon">
+            <LetterText className="text-zinc-800" />
+          </Button>
+        </DialogTooltipTrigger>
+        <DialogContent className="sm:max-w-[525px]">
+          <DialogHeader>
+            <DialogTitle className="mb-4 text-2xl leading-none tracking-tight">
+              Customize heading and description
+            </DialogTitle>
+            <CustomizeHeadingAndDescription closeDialog={() => setEditHeadingDialogOpen(false)} />
+          </DialogHeader>
         </DialogContent>
       </Dialog>
     </Card>

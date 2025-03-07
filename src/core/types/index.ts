@@ -99,15 +99,16 @@ export type WithIdAndKey<T> = T & { id: number; key: string };
 
 export type FieldWithId = WithIdAndKey<Field>;
 
-export type Form = {
-  metadata: {
-    heading: string;
-    description: string;
-    submitButton: string;
-    showBackground: boolean;
-    backgroundColor: string;
-    backgroundShade: number;
-  };
+export type FormMetadata = {
+  heading: string;
+  description: string;
+  submitButton: string;
+  showBackground: boolean;
+  backgroundColor: string;
+  backgroundShade: number;
+}
 
+export type Form = {
+  metadata: FormMetadata;
   fields: FieldWithId[];
 };

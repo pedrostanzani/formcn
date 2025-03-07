@@ -10,18 +10,22 @@ interface DialogTooltipTriggerProps {
   tooltip: string;
   children: React.ReactElement;
   side?: "top" | "right" | "bottom" | "left";
+  className?: string;
 }
 
 export function DialogTooltipTrigger({
   tooltip,
   children,
   side = "top",
+  className,
 }: DialogTooltipTriggerProps) {
   return (
     <TooltipProvider>
       <Tooltip>
         <DialogTrigger asChild>
-          <TooltipTrigger asChild>{children}</TooltipTrigger>
+          <TooltipTrigger asChild className={className}>
+            {children}
+          </TooltipTrigger>
         </DialogTrigger>
         <TooltipContent side={side}>
           <p>{tooltip}</p>

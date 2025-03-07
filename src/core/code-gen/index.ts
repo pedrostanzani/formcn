@@ -146,7 +146,7 @@ export function generateSourceCode({
   sourceCode += `import { z } from "zod";\n`;
   sourceCode += `import { zodResolver } from "@hookform/resolvers/zod"\n`;
   sourceCode += `import { useForm } from "react-hook-form"\n`;
-  sourceCode += `import { Form, FormControl, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"\n`;
+  sourceCode += `import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"\n`;
   sourceCode += `import { Button } from "@/components/ui/button"\n`;
   sourceCode += generateFieldSpecificImports(form.fields);
   sourceCode += `\n`;
