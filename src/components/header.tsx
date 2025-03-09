@@ -2,13 +2,8 @@ import { Button } from "@/components/ui/button";
 import { MousePointerClick } from "lucide-react";
 import {
   Dialog,
-  DialogClose,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SignInWithGitHub } from "@/components/auth/sign-in-with-github";
 import { Tagline } from "./tagline";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { extractInitials } from "@/lib/utils";
 import { SignOut } from "./auth/sign-out";
+import { AuthDialog } from "./auth/auth-dialog";
 
 export async function Header() {
   const session = await auth();
@@ -62,28 +58,7 @@ export async function Header() {
                 Sign in
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] [&>button]:hidden">
-              <DialogHeader>
-                <div className="flex items-center justify-between gap-1">
-                  <DialogTitle className="text-2xl tracking-tight">
-                    Sign in to formcn
-                  </DialogTitle>
-                  <MousePointerClick className="h-7 w-7 fill-amber-500" />
-                </div>
-              </DialogHeader>
-              <div className="grid gap-2 pt-4">
-                <SignInWithGitHub />
-                <DialogClose asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-12 w-full transition-colors"
-                  >
-                    Back
-                  </Button>
-                </DialogClose>
-              </div>
-            </DialogContent>
+            <AuthDialog />
           </Dialog>
         )}
       </div>

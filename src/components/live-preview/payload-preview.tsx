@@ -52,6 +52,7 @@ export function PayloadPreview({ className }: { className?: string }) {
       </h2>
       <p className="mb-4 text-sm text-zinc-500">
         When your form gets submitted, these values will be sent to the server.
+        Hit the submit button to refresh them!
       </p>
       <div
         className={cn(
