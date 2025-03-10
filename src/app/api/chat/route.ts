@@ -6,6 +6,8 @@ const promptSchema = z.object({
   prompt: z.string().min(1),
 });
 
+export const maxDuration = 60;
+
 export const POST = auth(async function POST(req) {
   if (!req.auth) {
     return new Response("Unauthorized", { status: 401 });
