@@ -8,6 +8,13 @@ import { usePlaygroundStore } from "@/stores/playground";
 import { Button } from "@/components/ui/button";
 import { DemoField } from "./demo-fields";
 import { cn, getTailwindColorHex } from "@/lib/utils";
+import { LetterText } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type FormDemoProps = {
   formSchema: z.ZodObject<
@@ -32,7 +39,8 @@ export const FormDemo: React.FC<FormDemoProps> = ({
   formValues,
   setFormValues,
 }) => {
-  const { form: formSpec, setPayloadPreview } = usePlaygroundStore();
+  const { form: formSpec, setPayloadPreview, setEditHeadingDialogOpen } =
+    usePlaygroundStore();
 
   // When we insert a new field, the key (which is the nextFieldId) passed to FormDemo is incremented.
   // This causes the form to be recreated with new values.
@@ -67,7 +75,7 @@ export const FormDemo: React.FC<FormDemoProps> = ({
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {formSpec.metadata.showBackground && (
           <div
-            className="mb-4 h-40"
+            className="mb-2.5 h-40"
             style={{
               backgroundColor: getTailwindColorHex({
                 color: formSpec.metadata.backgroundColor,
@@ -76,22 +84,46 @@ export const FormDemo: React.FC<FormDemoProps> = ({
             }}
           />
         )}
-        <div className={
-          cn("space-y-4 px-6 pb-4", !formSpec.metadata.showBackground && "pt-6")
-        }>
-          <div>
-            {formSpec.metadata.heading !== "" && (
-              <h1 className="mb-1.5 text-3xl font-bold tracking-tight">
-                {formSpec.metadata.heading}
-              </h1>
-            )}
-            {formSpec.metadata.description !== "" && (
-              <p className="text-base text-zinc-500">
-                {formSpec.metadata.description}
-              </p>
-            )}
+        <div
+          className={cn(
+            "space-y-4 pb-4",
+            !formSpec.metadata.showBackground && "pt-6",
+          )}
+        >
+          <div className="mb-2.5 flex items-center justify-between py-2 transition-colors hover:bg-gray-100">
+            <div className="px-6">
+              {formSpec.metadata.heading !== "" && (
+                <h1 className="mb-1.5 text-3xl font-bold tracking-tight">
+                  {formSpec.metadata.heading}
+                </h1>
+              )}
+              {formSpec.metadata.description !== "" && (
+                <p className="text-base text-zinc-500">
+                  {formSpec.metadata.description}
+                </p>
+              )}
+            </div>
+            <div className="pr-4">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => setEditHeadingDialogOpen(true)}
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                    >
+                      <LetterText className="text-zinc-800" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Customize heading</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </div>
-          <div className="mb-6 space-y-6">
+          <div className="mb-4 space-y-6 px-6">
             {formSpec.fields.map((field) => (
               <DemoField
                 key={field.id}
@@ -101,11 +133,13 @@ export const FormDemo: React.FC<FormDemoProps> = ({
               />
             ))}
           </div>
-          <Button type="submit">
-            {formSpec.metadata.submitButton === ""
-              ? "Submit"
-              : formSpec.metadata.submitButton}
-          </Button>
+          <div className="px-6">
+            <Button type="submit">
+              {formSpec.metadata.submitButton === ""
+                ? "Submit"
+                : formSpec.metadata.submitButton}
+            </Button>
+          </div>
         </div>
       </form>
     </Form>

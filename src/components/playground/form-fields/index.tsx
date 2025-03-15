@@ -35,7 +35,7 @@ export function FormFields() {
   const searchParams = useSearchParams();
   const template = searchParams.get("template");
 
-  const { form, setFields, setForm } = usePlaygroundStore();
+  const { form, setFields, setForm, setNextFieldId } = usePlaygroundStore();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -56,6 +56,7 @@ export function FormFields() {
   useEffect(() => {
     if (template === "birthday") {
       setForm(birthdayRSVPForm);
+      setNextFieldId(birthdayRSVPForm.fields.length + 1);
     }
     /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
@@ -108,7 +109,6 @@ export function FormFields() {
           </ol>
         </SortableContext>
       </DndContext>
-      <NewFieldDialog />
     </div>
   );
 }

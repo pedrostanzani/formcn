@@ -1,15 +1,9 @@
 import { useState } from "react";
-import { LetterText, Paintbrush, PaintBucket, Trash2 } from "lucide-react";
+import { Paintbrush, PaintBucket, Trash2 } from "lucide-react";
 
 import { usePlaygroundStore } from "@/stores/playground";
 import { cn } from "@/lib/utils";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,11 +20,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { DialogDescription } from "@radix-ui/react-dialog";
-import { BackgroundColorPicker } from "./background-color-picker";
 import { z } from "zod";
-import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
-import { CustomizeHeadingAndDescription } from "./customize-heading-description";
+import { BackgroundColorDialog } from "../background-color-dialog";
+import { EditHeadingDialog } from "../edit-heading-dialog";
 
 export function FormPreview({
   className,
@@ -52,10 +44,16 @@ export function FormPreview({
   defaultValues: Record<string, any>;
 }) {
   const [formValues, setFormValues] = useState<Record<string, any>>({});
-  const [editHeadingDialogOpen, setEditHeadingDialogOpen] = useState(false);
-  const [backgroundDialogOpen, setBackgroundDialogOpen] = useState(false);
 
-  const { form, nextFieldId, setShowBackground } = usePlaygroundStore();
+  const {
+    form,
+    nextFieldId,
+    setShowBackground,
+    backgroundDialogOpen,
+    setBackgroundDialogOpen,
+    editHeadingDialogOpen,
+    setEditHeadingDialogOpen,
+  } = usePlaygroundStore();
 
   if (form.fields.length === 0) {
     return (
@@ -123,16 +121,13 @@ export function FormPreview({
         <DropdownMenuContent align="end" className="w-56">
           {form.metadata.showBackground ? (
             <DropdownMenuGroup>
-              <DropdownMenuItem
-                onClick={() => setBackgroundDialogOpen(true)}
-                className="cursor-pointer"
-              >
+              <DropdownMenuItem onClick={() => setBackgroundDialogOpen(true)}>
                 <Paintbrush />
                 Change color
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => setShowBackground(false)}
-                className="group cursor-pointer"
+                className="group"
               >
                 <Trash2 className="text-zinc-500 transition-colors group-hover:text-red-600" />
                 Remove background
@@ -142,7 +137,7 @@ export function FormPreview({
             <DropdownMenuGroup>
               <DropdownMenuItem
                 onClick={() => setShowBackground(true)}
-                className="group cursor-pointer"
+                className="group"
               >
                 <Paintbrush />
                 Add background
@@ -151,47 +146,14 @@ export function FormPreview({
           )}
         </DropdownMenuContent>
       </DropdownMenu>
-      <Dialog
+      <BackgroundColorDialog
         open={backgroundDialogOpen}
         onOpenChange={setBackgroundDialogOpen}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="text-2xl leading-none tracking-tight">
-              Customize background
-            </DialogTitle>
-            <DialogDescription className="text-sm text-zinc-500 dark:text-zinc-400">
-              Customize the background color of the form with colors from the
-              Tailwind CSS palette.
-            </DialogDescription>
-          </DialogHeader>
-          <BackgroundColorPicker
-            closeDialog={() => setBackgroundDialogOpen(false)}
-          />
-        </DialogContent>
-      </Dialog>
-      <Dialog
+      />
+      <EditHeadingDialog
         open={editHeadingDialogOpen}
         onOpenChange={setEditHeadingDialogOpen}
-      >
-        <DialogTooltipTrigger
-          className="absolute top-[191px] right-4"
-          tooltip="Customize heading"
-          side="bottom"
-        >
-          <Button variant="outline" size="icon">
-            <LetterText className="text-zinc-800" />
-          </Button>
-        </DialogTooltipTrigger>
-        <DialogContent className="sm:max-w-[525px]">
-          <DialogHeader>
-            <DialogTitle className="mb-4 text-2xl leading-none tracking-tight">
-              Customize heading and description
-            </DialogTitle>
-            <CustomizeHeadingAndDescription closeDialog={() => setEditHeadingDialogOpen(false)} />
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      />
     </Card>
   );
 }

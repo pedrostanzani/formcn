@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/drawer";
 import { useState } from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { CirclePlus } from "lucide-react";
 
 export function NewFieldDialog() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,10 @@ export function NewFieldDialog() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="transition-colors">Add new field</Button>
+          <Button className="group transition-colors">
+            <CirclePlus className="h-4 w-4" />
+            Add new field
+          </Button>
         </DialogTrigger>
         <DialogContent className="flex h-[80vh] flex-col overflow-y-scroll px-0 sm:max-w-[768px]">
           <DialogHeader className="gap-1.5 px-6">
@@ -50,7 +54,10 @@ export function NewFieldDialog() {
   return (
     <Drawer open={open} onOpenChange={setOpen} autoFocus={open}>
       <DrawerTrigger asChild>
-        <Button className="transition-colors">Add new field</Button>
+        <Button className="group transition-colors">
+          <CirclePlus className="h-4 w-4" />
+          Add new field
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mt-2 overflow-y-scroll">

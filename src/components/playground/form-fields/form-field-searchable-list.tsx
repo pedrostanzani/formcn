@@ -158,12 +158,22 @@ const FieldTypeButton = ({
 }) => {
   const { addField } = usePlaygroundStore();
 
+  const handleClick = () => {
+    addField(fieldToAdd);
+    closeDialog();
+    
+    // Add smooth scrolling to the bottom of the page after dialog closes
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100); // Small delay to ensure dialog is closed first
+  };
+
   return (
     <button
-      onClick={() => {
-        addField(fieldToAdd);
-        closeDialog();
-      }}
+      onClick={handleClick}
       className="group flex max-w-52 shrink-0 flex-col overflow-hidden rounded-md border border-zinc-200 transition-all"
     >
       <div

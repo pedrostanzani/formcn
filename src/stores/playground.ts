@@ -19,8 +19,17 @@ interface PlaygroundState {
   currentTab: "form" | "code";
   setCurrentTab: (currentTab: "form" | "code") => void;
 
+  // UI
+  compactToolbar: boolean;
+  setCompactToolbar: (compactToolbar: boolean) => void;
+  backgroundDialogOpen: boolean;
+  setBackgroundDialogOpen: (backgroundDialogOpen: boolean) => void;
+  editHeadingDialogOpen: boolean;
+  setEditHeadingDialogOpen: (editHeadingDialogOpen: boolean) => void;
+
   form: Form;
   nextFieldId: number;
+  setNextFieldId: (nextFieldId: number) => void;
   addField: (field: Field) => void;
   removeField: (id: number) => void;
   setMetadata: (metadata: FormMetadata) => void;
@@ -29,6 +38,8 @@ interface PlaygroundState {
   setField: (id: number, field: FieldWithId) => void;
   setBackground: ({ color, shade }: { color: string; shade: number }) => void;
   setShowBackground: (showBackground: boolean) => void;
+  
+  resetForm: () => void;
 
   payloadPreview: string | null;
   setPayloadPreview: (payloadPreview: string | null) => void;
@@ -38,9 +49,18 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
   currentTab: "form",
   setCurrentTab: (currentTab) => set({ currentTab }),
 
+  // UI
+  compactToolbar: false,
+  setCompactToolbar: (compactToolbar) => set({ compactToolbar }),
+  backgroundDialogOpen: false,
+  setBackgroundDialogOpen: (backgroundDialogOpen) => set({ backgroundDialogOpen }),
+  editHeadingDialogOpen: false,
+  setEditHeadingDialogOpen: (editHeadingDialogOpen) => set({ editHeadingDialogOpen }),
+
   // Form state and utilities
   form: emptyForm,
   nextFieldId: 0,
+  setNextFieldId: (nextFieldId) => set({ nextFieldId }),
   addField: (field: Field) =>
     set((state) => ({
       nextFieldId: state.nextFieldId + 1,
@@ -93,6 +113,8 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         metadata: { ...state.form.metadata, showBackground },
       },
     })),
+
+  resetForm: () => set({ form: emptyForm }),
 
   payloadPreview: null,
   setPayloadPreview: (payloadPreview: string | null) => set({ payloadPreview }),

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/header";
 import "./globals.css";
 
@@ -16,8 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "formcn | Build beautiful forms with shadcn/ui, React Hook Form and Zod",
-  description: "Use AI to build beautiful forms with shadcn/ui, React Hook Form and Zod.",
+  title:
+    "formcn | Build beautiful forms with shadcn/ui, React Hook Form and Zod",
+  description:
+    "Use AI to build beautiful forms with shadcn/ui, React Hook Form and Zod.",
 };
 
 export default function RootLayout({
