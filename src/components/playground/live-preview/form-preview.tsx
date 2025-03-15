@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FormDemo } from "./form-demo";
 import { Card } from "@/components/ui/card";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -29,7 +29,7 @@ import {
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { BackgroundColorPicker } from "./background-color-picker";
 import { z } from "zod";
-import { DialogTooltipTrigger } from "../dialog-tooltip-trigger";
+import { DialogTooltipTrigger } from "@/components/dialog-tooltip-trigger";
 import { CustomizeHeadingAndDescription } from "./customize-heading-description";
 
 export function FormPreview({

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import { useEffect } from "react";
 import { usePlaygroundStore } from "@/stores/playground";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { DemoField } from "./demo-fields";
 import { cn, getTailwindColorHex } from "@/lib/utils";
 

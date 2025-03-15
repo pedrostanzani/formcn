@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Search, LucideIcon, CircleOff, Square } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Field, FieldType } from "@/core/types";
 import { usePlaygroundStore } from "@/stores/playground";

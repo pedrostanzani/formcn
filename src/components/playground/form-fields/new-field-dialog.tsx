@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { FormFieldSearchableList } from "@/components/form-fields/form-field-searchable-list";
+import { FormFieldSearchableList } from "@/components/playground/form-fields/form-field-searchable-list";
 import {
   Dialog,
   DialogContent,

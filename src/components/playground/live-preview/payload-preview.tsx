@@ -5,7 +5,7 @@ import { Check, Copy } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { usePlaygroundStore } from "@/stores/playground";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 export function PayloadPreview({ className }: { className?: string }) {
   const { payloadPreview: formattedCode, setPayloadPreview } =

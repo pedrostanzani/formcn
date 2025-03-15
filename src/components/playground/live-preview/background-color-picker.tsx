@@ -7,8 +7,8 @@ import {
 } from "@/components/ui/select";
 import { usePlaygroundStore } from "@/stores/playground";
 import { Fragment, useState } from "react";
-import { DialogFooter } from "../ui/dialog";
-import { Button } from "../ui/button";
+import { DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { ColorCard } from "./color-card";
 
 import { tailwindColors } from "@/static/tailwind-colors";

@@ -1,8 +1,8 @@
-import { LivePreview } from "@/components/live-preview";
-import { PreviewTabs } from "@/components/live-preview/preview-tabs";
-import { FormFields } from "@/components/form-fields";
 import { Suspense } from "react";
-import { PayloadPreview } from "@/components/live-preview/payload-preview";
+import { LivePreview } from "@/components/playground/live-preview";
+import { PreviewTabs } from "@/components/playground/live-preview/preview-tabs";
+import { FormFields } from "@/components/playground/form-fields";
+import { PayloadPreview } from "@/components/playground/live-preview/payload-preview";
 
 export default function PlaygroundPage() {
   return (

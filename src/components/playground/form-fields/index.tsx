@@ -16,9 +16,9 @@ import {
 
 import { usePlaygroundStore } from "@/stores/playground";
 
-import { DraggableWrapper } from "@/components/form-fields/field-cards/draggable-wrapper";
-import { NewFieldDialog } from "@/components/form-fields/new-field-dialog";
-import { FieldCard } from "@/components/form-fields/field-cards";
+import { DraggableWrapper } from "@/components/playground/form-fields/field-cards/draggable-wrapper";
+import { NewFieldDialog } from "@/components/playground/form-fields/new-field-dialog";
+import { FieldCard } from "@/components/playground/form-fields/field-cards";
 import { Button } from "@/components/ui/button";
 import {
   Card,

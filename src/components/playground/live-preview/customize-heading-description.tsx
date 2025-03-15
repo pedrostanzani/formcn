@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { usePlaygroundStore } from "@/stores/playground";
-import { DialogFooter } from "../ui/dialog";
+import { DialogFooter } from "@/components/ui/dialog";
 
 const formSchema = z.object({
   formTitle: z.string(),
