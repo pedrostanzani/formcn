@@ -38,22 +38,30 @@ import { NewFieldDialog } from "../form-fields/new-field-dialog";
 import { useResizeObserver } from "@/hooks/use-resize-observer";
 import { cn } from "@/lib/utils";
 import { UndoRedo } from "./undo-redo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+function useToolbarResize() {
+  const { ref, width } = useResizeObserver();
+  const { setCompactToolbar } = usePlaygroundStore();
+
+  useEffect(() => {
+    setCompactToolbar(width < 360);
+  }, [width, setCompactToolbar]);
+
+  return { ref };
+}
 
 export function Toolbar() {
   const [clearFormDialogOpen, setClearFormDialogOpen] = useState(false);
   const {
     form,
     compactToolbar,
-    setCompactToolbar,
     resetForm,
     setShowBackground,
     setBackgroundDialogOpen,
     setEditHeadingDialogOpen,
   } = usePlaygroundStore();
-  const { ref } = useResizeObserver((width) => {
-    setCompactToolbar(width < 360);
-  });
+  const { ref } = useToolbarResize();
 
   if (form.fields.length === 0) {
     return null;
