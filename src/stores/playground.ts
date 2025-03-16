@@ -16,51 +16,75 @@ const emptyForm: Form = {
 };
 
 interface PlaygroundState {
-  currentTab: "form" | "code";
-  setCurrentTab: (currentTab: "form" | "code") => void;
-
   // UI
+  currentTab: "form" | "code";
   compactToolbar: boolean;
-  setCompactToolbar: (compactToolbar: boolean) => void;
   backgroundDialogOpen: boolean;
-  setBackgroundDialogOpen: (backgroundDialogOpen: boolean) => void;
   editHeadingDialogOpen: boolean;
-  setEditHeadingDialogOpen: (editHeadingDialogOpen: boolean) => void;
+  payloadPreview: string | null;
 
+  // UI setters
+  setCurrentTab: (currentTab: "form" | "code") => void;
+  setCompactToolbar: (compactToolbar: boolean) => void;
+  setBackgroundDialogOpen: (backgroundDialogOpen: boolean) => void;
+  setEditHeadingDialogOpen: (editHeadingDialogOpen: boolean) => void;
+  setPayloadPreview: (payloadPreview: string | null) => void;
+
+  // Form state
   form: Form;
   nextFieldId: number;
-  setNextFieldId: (nextFieldId: number) => void;
-  addField: (field: Field) => void;
-  removeField: (id: number) => void;
-  setMetadata: (metadata: FormMetadata) => void;
+
+  // Form state setters
   setForm: (form: Form) => void;
-  setFields: (fields: FieldWithId[]) => void;
-  setField: (id: number, field: FieldWithId) => void;
-  setBackground: ({ color, shade }: { color: string; shade: number }) => void;
-  setShowBackground: (showBackground: boolean) => void;
-  
+  setNextFieldId: (nextFieldId: number) => void;
   resetForm: () => void;
 
-  payloadPreview: string | null;
-  setPayloadPreview: (payloadPreview: string | null) => void;
+  // Form utilities (fields)
+  addField: (field: Field) => void;
+  removeField: (id: number) => void;
+  setField: (id: number, field: FieldWithId) => void;
+  setFields: (fields: FieldWithId[]) => void;
+
+  // Form utilities (metadata)
+  setMetadata: (metadata: FormMetadata) => void;
+  setBackground: ({ color, shade }: { color: string; shade: number }) => void;
+  setShowBackground: (showBackground: boolean) => void;
 }
 
 export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
-  currentTab: "form",
-  setCurrentTab: (currentTab) => set({ currentTab }),
+  // Undo/redo
+  // undoStack: [],
+  // redoStack: [],
+
+  // undo: () => {},
+  // redo: () => {},
 
   // UI
+  currentTab: "form",
   compactToolbar: false,
-  setCompactToolbar: (compactToolbar) => set({ compactToolbar }),
   backgroundDialogOpen: false,
-  setBackgroundDialogOpen: (backgroundDialogOpen) => set({ backgroundDialogOpen }),
   editHeadingDialogOpen: false,
-  setEditHeadingDialogOpen: (editHeadingDialogOpen) => set({ editHeadingDialogOpen }),
+  payloadPreview: null,
 
-  // Form state and utilities
+  // UI setters
+  setCurrentTab: (currentTab) => set({ currentTab }),
+  setCompactToolbar: (compactToolbar) => set({ compactToolbar }),
+  setBackgroundDialogOpen: (backgroundDialogOpen) =>
+    set({ backgroundDialogOpen }),
+  setEditHeadingDialogOpen: (editHeadingDialogOpen) =>
+    set({ editHeadingDialogOpen }),
+  setPayloadPreview: (payloadPreview: string | null) => set({ payloadPreview }),
+
+  // Form state
   form: emptyForm,
   nextFieldId: 0,
+
+  // Form state setters
+  setForm: (form: Form) => set({ form }),
   setNextFieldId: (nextFieldId) => set({ nextFieldId }),
+  resetForm: () => set({ form: emptyForm }),
+
+  // Form utilities (fields)
   addField: (field: Field) =>
     set((state) => ({
       nextFieldId: state.nextFieldId + 1,
@@ -83,11 +107,6 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         fields: state.form.fields.filter((field) => field.id !== id),
       },
     })),
-  setMetadata: (metadata: FormMetadata) =>
-    set((state) => ({ form: { ...state.form, metadata } })),
-  setForm: (form: Form) => set({ form }),
-  setFields: (fields: FieldWithId[]) =>
-    set((state) => ({ form: { ...state.form, fields } })),
   setField: (id: number, field: FieldWithId) =>
     set((state) => ({
       form: {
@@ -95,6 +114,12 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         fields: state.form.fields.map((f) => (f.id === id ? field : f)),
       },
     })),
+  setFields: (fields: FieldWithId[]) =>
+    set((state) => ({ form: { ...state.form, fields } })),
+
+  // Form utilities (metadata)
+  setMetadata: (metadata: FormMetadata) =>
+    set((state) => ({ form: { ...state.form, metadata } })),
   setBackground: ({ color, shade }: { color: string; shade: number }) =>
     set((state) => ({
       form: {
@@ -113,9 +138,4 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
         metadata: { ...state.form.metadata, showBackground },
       },
     })),
-
-  resetForm: () => set({ form: emptyForm }),
-
-  payloadPreview: null,
-  setPayloadPreview: (payloadPreview: string | null) => set({ payloadPreview }),
 }));
