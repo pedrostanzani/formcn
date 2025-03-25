@@ -39,8 +39,11 @@ export const FormDemo: React.FC<FormDemoProps> = ({
   formValues,
   setFormValues,
 }) => {
-  const { form: formSpec, setPayloadPreview, setEditHeadingDialogOpen } =
-    usePlaygroundStore();
+  const {
+    form: formSpec,
+    setPayloadPreview,
+    setEditHeadingDialogOpen,
+  } = usePlaygroundStore();
 
   // When we insert a new field, the key (which is the nextFieldId) passed to FormDemo is incremented.
   // This causes the form to be recreated with new values.
@@ -75,7 +78,7 @@ export const FormDemo: React.FC<FormDemoProps> = ({
       <form onSubmit={form.handleSubmit(onSubmit)}>
         {formSpec.metadata.showBackground && (
           <div
-            className="mb-2.5 h-40"
+            className="h-40"
             style={{
               backgroundColor: getTailwindColorHex({
                 color: formSpec.metadata.backgroundColor,
@@ -84,16 +87,16 @@ export const FormDemo: React.FC<FormDemoProps> = ({
             }}
           />
         )}
-        <div
-          className={cn(
-            "space-y-4 pb-4",
-            !formSpec.metadata.showBackground && "pt-6",
-          )}
-        >
-          <div className="mb-2.5 flex items-center justify-between py-2 transition-colors hover:bg-gray-100">
-            <div className="px-6">
+        <div className={
+          cn(
+            "space-y-4 pb-6",
+            formSpec.metadata.showBackground ? "mt-4" : "mt-5"
+          )
+        }>
+          <div className="flex items-center justify-between">
+            <div className="pl-6">
               {formSpec.metadata.heading !== "" && (
-                <h1 className="mb-1.5 text-3xl font-bold tracking-tight">
+                <h1 className="mb-1 text-3xl font-bold tracking-tight">
                   {formSpec.metadata.heading}
                 </h1>
               )}
