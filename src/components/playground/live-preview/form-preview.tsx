@@ -96,56 +96,59 @@ export function FormPreview({
           </TooltipContent>
         </Tooltip>
       </TooltipProvider> */}
-      <DropdownMenu>
-        <TooltipProvider>
-          <Tooltip>
-            <DropdownMenuTrigger asChild>
-              <TooltipTrigger asChild>
-                <Button
-                  className={cn(
-                    "absolute top-28 right-4",
-                    !form.metadata.showBackground && "top-5",
-                  )}
-                  variant="outline"
-                  size="icon"
+      {form.metadata.showBackground && (
+        <DropdownMenu>
+          <TooltipProvider>
+            <Tooltip>
+              <DropdownMenuTrigger asChild>
+                <TooltipTrigger asChild>
+                  <Button
+                    className={cn(
+                      "absolute top-28 right-4",
+                      !form.metadata.showBackground && "top-5",
+                    )}
+                    variant="outline"
+                    size="icon"
+                  >
+                    <PaintBucket className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+              </DropdownMenuTrigger>
+              <TooltipContent side="left">
+                <p>Customize background</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <DropdownMenuContent align="end" className="w-56">
+            {form.metadata.showBackground ? (
+              <DropdownMenuGroup>
+                <DropdownMenuItem onClick={() => setBackgroundDialogOpen(true)}>
+                  <Paintbrush />
+                  Change color
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setShowBackground(false)}
+                  className="group"
                 >
-                  <PaintBucket className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-            </DropdownMenuTrigger>
-            <TooltipContent side="left">
-              <p>Customize background</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <DropdownMenuContent align="end" className="w-56">
-          {form.metadata.showBackground ? (
-            <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => setBackgroundDialogOpen(true)}>
-                <Paintbrush />
-                Change color
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => setShowBackground(false)}
-                className="group"
-              >
-                <Trash2 className="text-zinc-500 transition-colors group-hover:text-red-600" />
-                Remove background
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          ) : (
-            <DropdownMenuGroup>
-              <DropdownMenuItem
-                onClick={() => setShowBackground(true)}
-                className="group"
-              >
-                <Paintbrush />
-                Add background
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          )}
-        </DropdownMenuContent>
-      </DropdownMenu>
+                  <Trash2 className="text-zinc-500 transition-colors group-hover:text-red-600" />
+                  Remove background
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            ) : (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  onClick={() => setShowBackground(true)}
+                  className="group"
+                >
+                  <Paintbrush />
+                  Add background
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
+
       <BackgroundColorDialog
         open={backgroundDialogOpen}
         onOpenChange={setBackgroundDialogOpen}
