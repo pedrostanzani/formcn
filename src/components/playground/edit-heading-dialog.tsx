@@ -23,7 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
-  formTitle: z.string(),
+  formTitle: z.string().min(1, { message: "A form title is required" }),
   description: z.string(),
 });
 
