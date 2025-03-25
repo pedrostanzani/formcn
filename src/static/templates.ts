@@ -11,6 +11,8 @@ export const birthdayRSVPForm: Form = {
     heading: "Birthday RSVP",
     description: "Please fill out the form to RSVP for the birthday party.",
     submitButton: "Submit",
+    submitButtonColor: "zinc",
+    submitButtonShade: 900,
     showBackground: true,
     backgroundColor: "red",
     backgroundShade: 500,

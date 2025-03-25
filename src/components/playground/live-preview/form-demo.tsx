@@ -3,11 +3,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { usePlaygroundStore } from "@/stores/playground";
 import { Button } from "@/components/ui/button";
 import { DemoField } from "./demo-fields";
-import { cn, getTailwindColorHex } from "@/lib/utils";
+import {
+  cn,
+  getTailwindColorHex,
+  getTextColorBasedOnBackground,
+} from "@/lib/utils";
 import { LetterText } from "lucide-react";
 import {
   Tooltip,
@@ -15,6 +19,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { tailwindColors } from "@/static/tailwind-colors";
 
 type FormDemoProps = {
   formSchema: z.ZodObject<
@@ -44,6 +49,15 @@ export const FormDemo: React.FC<FormDemoProps> = ({
     setPayloadPreview,
     setEditHeadingDialogOpen,
   } = usePlaygroundStore();
+
+  const submitButtonColor = useMemo(() => {
+    return tailwindColors[formSpec.metadata.submitButtonColor][
+      formSpec.metadata.submitButtonShade
+    ];
+  }, [
+    formSpec.metadata.submitButtonColor,
+    formSpec.metadata.submitButtonShade,
+  ]);
 
   // When we insert a new field, the key (which is the nextFieldId) passed to FormDemo is incremented.
   // This causes the form to be recreated with new values.
@@ -87,12 +101,12 @@ export const FormDemo: React.FC<FormDemoProps> = ({
             }}
           />
         )}
-        <div className={
-          cn(
+        <div
+          className={cn(
             "space-y-4 pb-6",
-            formSpec.metadata.showBackground ? "mt-4" : "mt-5"
-          )
-        }>
+            formSpec.metadata.showBackground ? "mt-4" : "mt-5",
+          )}
+        >
           <div className="flex items-center justify-between">
             <div className="pl-6">
               {formSpec.metadata.heading !== "" && (
@@ -137,7 +151,14 @@ export const FormDemo: React.FC<FormDemoProps> = ({
             ))}
           </div>
           <div className="px-6">
-            <Button type="submit">
+            <Button
+              className="transition-opacity hover:opacity-90"
+              style={{
+                backgroundColor: submitButtonColor,
+                color: getTextColorBasedOnBackground(submitButtonColor),
+              }}
+              type="submit"
+            >
               {formSpec.metadata.submitButton === ""
                 ? "Submit"
                 : formSpec.metadata.submitButton}

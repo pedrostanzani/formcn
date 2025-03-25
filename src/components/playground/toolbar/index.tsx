@@ -60,6 +60,7 @@ export function Toolbar() {
     setShowBackground,
     setBackgroundDialogOpen,
     setEditHeadingDialogOpen,
+    setEditSubmitButtonDialogOpen,
   } = usePlaygroundStore();
   const { ref } = useToolbarResize();
 
@@ -122,7 +123,7 @@ export function Toolbar() {
                 <LetterText />
                 Heading
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setEditSubmitButtonDialogOpen(true)}>
                 <CornerDownRight />
                 Submit button
               </DropdownMenuItem>

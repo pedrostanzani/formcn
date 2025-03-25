@@ -23,6 +23,7 @@ import {
 import { z } from "zod";
 import { BackgroundColorDialog } from "../background-color-dialog";
 import { EditHeadingDialog } from "../edit-heading-dialog";
+import { EditSubmitButtonDialog } from "../edit-submit-button-dialog";
 
 export function FormPreview({
   className,
@@ -53,6 +54,8 @@ export function FormPreview({
     setBackgroundDialogOpen,
     editHeadingDialogOpen,
     setEditHeadingDialogOpen,
+    editSubmitButtonDialogOpen,
+    setEditSubmitButtonDialogOpen,
   } = usePlaygroundStore();
 
   if (form.fields.length === 0) {
@@ -156,6 +159,10 @@ export function FormPreview({
       <EditHeadingDialog
         open={editHeadingDialogOpen}
         onOpenChange={setEditHeadingDialogOpen}
+      />
+      <EditSubmitButtonDialog
+        open={editSubmitButtonDialogOpen}
+        onOpenChange={setEditSubmitButtonDialogOpen}
       />
     </Card>
   );

@@ -6,13 +6,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { usePlaygroundStore } from "@/stores/playground";
 import { useState } from "react";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -20,9 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ColorCard } from "./live-preview/color-card";
 
 import { tailwindColors } from "@/static/tailwind-colors";
-
-const colors = Object.keys(tailwindColors);
-const shades = [50, ...Array.from({ length: 9 }, (_, i) => (i + 1) * 100), 950];
+import { ColorSelect } from "../colors/color-select";
+import { ShadeSelect } from "../colors/shade-select";
 
 export function BackgroundColorDialog({
   open,
@@ -61,45 +53,12 @@ export function BackgroundColorDialog({
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-2 sm:flex-row">
-          <Select value={selectedColor} onValueChange={setSelectedColor}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select color" />
-            </SelectTrigger>
-            <SelectContent>
-              {colors.map((color) => (
-                <SelectItem key={color} value={color}>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`h-5 w-5 rounded-sm`}
-                      style={{ backgroundColor: tailwindColors[color][600] }}
-                    />
-                    {color.charAt(0).toUpperCase() + color.slice(1)}
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Select value={selectedShade} onValueChange={setSelectedShade}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select shade" />
-            </SelectTrigger>
-            <SelectContent>
-              {shades.map((shade) => (
-                <SelectItem key={shade} value={shade.toString()}>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`h-4 w-4 rounded-full`}
-                      style={{
-                        backgroundColor: tailwindColors[selectedColor][shade],
-                      }}
-                    />
-                    {shade}
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <ColorSelect value={selectedColor} onValueChange={setSelectedColor} />
+          <ShadeSelect
+            selectedColor={selectedColor}
+            value={selectedShade}
+            onValueChange={setSelectedShade}
+          />
         </div>
         <div>
           <ColorCard

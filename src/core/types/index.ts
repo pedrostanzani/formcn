@@ -103,6 +103,8 @@ export type FormMetadata = {
   heading: string;
   description: string;
   submitButton: string;
+  submitButtonColor: string;
+  submitButtonShade: number;
   showBackground: boolean;
   backgroundColor: string;
   backgroundShade: number;

@@ -8,6 +8,8 @@ const emptyForm: Form = {
     description:
       "I built this form with formcn, shadcn/ui, React Hook Form and Zod.",
     submitButton: "Submit",
+    submitButtonColor: "zinc",
+    submitButtonShade: 900,
     showBackground: true,
     backgroundColor: "amber",
     backgroundShade: 500,
@@ -21,6 +23,7 @@ interface PlaygroundState {
   compactToolbar: boolean;
   backgroundDialogOpen: boolean;
   editHeadingDialogOpen: boolean;
+  editSubmitButtonDialogOpen: boolean;
   payloadPreview: string | null;
 
   // UI setters
@@ -28,6 +31,7 @@ interface PlaygroundState {
   setCompactToolbar: (compactToolbar: boolean) => void;
   setBackgroundDialogOpen: (backgroundDialogOpen: boolean) => void;
   setEditHeadingDialogOpen: (editHeadingDialogOpen: boolean) => void;
+  setEditSubmitButtonDialogOpen: (editSubmitButtonDialogOpen: boolean) => void;
   setPayloadPreview: (payloadPreview: string | null) => void;
 
   // Form state
@@ -64,6 +68,7 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
   compactToolbar: false,
   backgroundDialogOpen: false,
   editHeadingDialogOpen: false,
+  editSubmitButtonDialogOpen: false,
   payloadPreview: null,
 
   // UI setters
@@ -73,6 +78,8 @@ export const usePlaygroundStore = create<PlaygroundState>()((set) => ({
     set({ backgroundDialogOpen }),
   setEditHeadingDialogOpen: (editHeadingDialogOpen) =>
     set({ editHeadingDialogOpen }),
+  setEditSubmitButtonDialogOpen: (editSubmitButtonDialogOpen) =>
+    set({ editSubmitButtonDialogOpen }),
   setPayloadPreview: (payloadPreview: string | null) => set({ payloadPreview }),
 
   // Form state
