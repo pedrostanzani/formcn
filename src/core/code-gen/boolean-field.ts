@@ -34,7 +34,7 @@ function generateBooleanInputComponentSourceCode(
     booleanInputComponentSourceCode += `    <FormLabel>${field.label ?? ""}</FormLabel>\n`;
 
     if (isTruthy(field.description) && field.description.length > 0) {
-      booleanInputComponentSourceCode += `    <FormDescription>${field.description}</FormDescription>`;
+      booleanInputComponentSourceCode += `    <FormDescription>${field.description}</FormDescription>\n`;
     }
 
     booleanInputComponentSourceCode += `  </div>\n`;
@@ -46,17 +46,17 @@ function generateBooleanInputComponentSourceCode(
 
   if (field.format === BooleanFieldFormat.Switch) {
     booleanInputComponentSourceCode += `<FormItem className="${generateBooleanFormItemClassName(field)}">\n`;
-    booleanInputComponentSourceCode += `  <FormControl>\n`;
-    booleanInputComponentSourceCode += `    <Checkbox checked={field.value} onCheckedChange={field.onChange} />\n`;
-    booleanInputComponentSourceCode += `  </FormControl>\n`;
     booleanInputComponentSourceCode += `  <div className="space-y-1 leading-none">\n`;
     booleanInputComponentSourceCode += `    <FormLabel>${field.label ?? ""}</FormLabel>\n`;
 
     if (isTruthy(field.description) && field.description.length > 0) {
-      booleanInputComponentSourceCode += `    <FormDescription>${field.description}</FormDescription>`;
+      booleanInputComponentSourceCode += `    <FormDescription>${field.description}</FormDescription>\n`;
     }
 
     booleanInputComponentSourceCode += `  </div>\n`;
+    booleanInputComponentSourceCode += `  <FormControl>\n`;
+    booleanInputComponentSourceCode += `    <Switch checked={field.value} onCheckedChange={field.onChange} />\n`;
+    booleanInputComponentSourceCode += `  </FormControl>\n`;
     booleanInputComponentSourceCode += `</FormItem>\n`;
   }
 

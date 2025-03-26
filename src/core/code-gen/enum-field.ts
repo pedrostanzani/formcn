@@ -26,7 +26,7 @@ function generateEnumComponentSourceCode(field: WithIdAndKey<EnumField>) {
       enumComponentSourceCode += `    </SelectTrigger>\n`;
       enumComponentSourceCode += `  </FormControl>\n`;
       enumComponentSourceCode += `  <SelectContent>\n`;
-      enumComponentSourceCode += `    ${field.options.map((option) => `<SelectItem value="${option.value}">${option.label}</SelectItem>`).join("\n")}`;
+      enumComponentSourceCode += `    ${field.options.map((option) => `<SelectItem value="${option.value}">${option.label}</SelectItem>`).join("\n")}\n`;
       enumComponentSourceCode += `  </SelectContent>\n`;
       enumComponentSourceCode += `</Select>\n`;
       break;
