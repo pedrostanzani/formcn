@@ -145,6 +145,8 @@ export async function generateFormFromUserPrompt(prompt: string) {
       heading: validatedResult.formTitle,
       description: validatedResult.formDescription,
       submitButton: validatedResult.submitButtonText,
+      submitButtonColor: "zinc",
+      submitButtonShade: 900,
       showBackground: true,
       backgroundColor: "slate",
       backgroundShade: 900,
