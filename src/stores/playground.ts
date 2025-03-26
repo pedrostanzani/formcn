@@ -10,6 +10,7 @@ const emptyForm: Form = {
     submitButton: "Submit",
     submitButtonColor: "zinc",
     submitButtonShade: 900,
+    buttonWidthFull: false,
     showBackground: true,
     backgroundColor: "amber",
     backgroundShade: 500,

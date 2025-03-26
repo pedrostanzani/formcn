@@ -150,12 +150,13 @@ export const FormDemo: React.FC<FormDemoProps> = ({
               />
             ))}
           </div>
-          <div className="px-6">
+          <div className="px-6 w-full">
             <Button
-              className="transition-opacity hover:opacity-90"
+              className="max-w-160 w-full transition-opacity hover:opacity-90"
               style={{
                 backgroundColor: submitButtonColor,
                 color: getTextColorBasedOnBackground(submitButtonColor),
+                width: formSpec.metadata.buttonWidthFull ? "100%" : "auto",
               }}
               type="submit"
             >

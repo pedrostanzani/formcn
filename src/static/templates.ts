@@ -13,6 +13,7 @@ export const birthdayRSVPForm: Form = {
     submitButton: "Submit",
     submitButtonColor: "zinc",
     submitButtonShade: 900,
+    buttonWidthFull: false,
     showBackground: true,
     backgroundColor: "red",
     backgroundShade: 500,

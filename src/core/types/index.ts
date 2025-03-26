@@ -105,6 +105,7 @@ export type FormMetadata = {
   submitButton: string;
   submitButtonColor: string;
   submitButtonShade: number;
+  buttonWidthFull: boolean;
   showBackground: boolean;
   backgroundColor: string;
   backgroundShade: number;
