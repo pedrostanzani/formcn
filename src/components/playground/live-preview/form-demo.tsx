@@ -12,7 +12,7 @@ import {
   getTailwindColorHex,
   getTextColorBasedOnBackground,
 } from "@/lib/utils";
-import { LetterText } from "lucide-react";
+import { LetterText, RectangleHorizontal } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -48,6 +48,7 @@ export const FormDemo: React.FC<FormDemoProps> = ({
     form: formSpec,
     setPayloadPreview,
     setEditHeadingDialogOpen,
+    setEditSubmitButtonDialogOpen
   } = usePlaygroundStore();
 
   const submitButtonColor = useMemo(() => {
@@ -150,9 +151,10 @@ export const FormDemo: React.FC<FormDemoProps> = ({
               />
             ))}
           </div>
-          <div className="px-6 w-full">
+          <div className="pl-6 pr-4 gap-4 flex items-center justify-between">
+            <div className="w-full">
             <Button
-              className="max-w-160 w-full transition-opacity hover:opacity-90"
+              className="transition-opacity hover:opacity-90"
               style={{
                 backgroundColor: submitButtonColor,
                 color: getTextColorBasedOnBackground(submitButtonColor),
@@ -164,6 +166,26 @@ export const FormDemo: React.FC<FormDemoProps> = ({
                 ? "Submit"
                 : formSpec.metadata.submitButton}
             </Button>
+            </div>
+            <div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => setEditSubmitButtonDialogOpen(true)}
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                    >
+                      <RectangleHorizontal className="text-zinc-800" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="left">
+                    <p>Customize button</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </div>
         </div>
       </form>
