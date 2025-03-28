@@ -138,7 +138,7 @@ export function Toolbar() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <UndoRedo className={cn(compactToolbar && "order-first")} />
+      {/* <UndoRedo className={cn(compactToolbar && "order-first")} /> */}
       <AlertDialog
         open={clearFormDialogOpen}
         onOpenChange={setClearFormDialogOpen}
