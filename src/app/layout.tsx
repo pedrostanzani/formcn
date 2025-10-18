@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider"
-import { Analytics } from '@vercel/analytics/next';
-
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "@/components/ui/sonner";
+import { Header } from "@/components/header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,8 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Form Builder | Build forms with shadcn/ui, React Hook Form and Zod",
-  description: "Build forms with shadcn/ui, React Hook Form and Zod",
+  title:
+    "formcn | Build beautiful forms with shadcn/ui, React Hook Form and Zod",
+  description:
+    "Use AI to build beautiful forms with shadcn/ui, React Hook Form and Zod.",
 };
 
 export default function RootLayout({
@@ -26,18 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
+        <NextTopLoader color="#f59e0b" showSpinner={false} />
+        <div className="flex min-h-screen flex-col">
+          <Header />
           {children}
-        </ThemeProvider>
-        <Analytics />
+        </div>
+        <Toaster />
       </body>
     </html>
   );
